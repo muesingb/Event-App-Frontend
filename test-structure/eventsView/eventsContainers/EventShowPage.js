@@ -1,0 +1,1 @@
+//renders filled out eventInfoCard

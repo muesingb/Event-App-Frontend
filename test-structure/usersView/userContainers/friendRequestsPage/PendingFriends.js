@@ -1,0 +1,1 @@
+//renders pending friends userCards

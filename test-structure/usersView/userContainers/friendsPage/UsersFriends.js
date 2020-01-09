@@ -1,0 +1,1 @@
+//renders userCards that are friends with user

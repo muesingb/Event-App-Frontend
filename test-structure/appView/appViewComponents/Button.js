@@ -1,0 +1,1 @@
+//renders each button for NavBar and determines which button is the current screen

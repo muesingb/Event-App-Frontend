@@ -1,0 +1,1 @@
+//will render either showpage of current user or another user using userCard

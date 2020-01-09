@@ -1,0 +1,1 @@
+//renders only user's eventCards

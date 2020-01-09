@@ -1,0 +1,1 @@
+//renders card for a specific event
