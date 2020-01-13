@@ -1,1 +1,0 @@
-//renders NavBar for bottom of app
