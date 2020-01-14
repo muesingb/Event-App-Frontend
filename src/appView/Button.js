@@ -1,12 +1,14 @@
 //renders each button for NavBar and determines which button is the current screen
-import React from 'react';
+import React, { useState } from 'react';
 import { Text, View, StyleSheet, Button } from 'react-native';
 
 const NavButton = props => {
+
+  const [link, setLink] = useState("")
   
     const handlePress = () => {
         console.log("hi")
-        props.navigation.navigate("CreateEvent")
+        props.navigation.navigate("Create Event")
     }
 
     console.log(props)

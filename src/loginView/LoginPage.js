@@ -2,14 +2,13 @@
 //or sign in as guest
 
 import React, { Fragment, useState, useEffect } from 'react';
-import { Text, View, Button, StyleSheet, TextInput } from 'react-native';
+import { View, StyleSheet, TextInput } from 'react-native';
 
-import NavBar from '../appView/appViewContainers/NavBar'
 import UserCard from '../usersView/userComponents/UserCard'
 
 const LoginPage = props => {
 
-  const URL = 'http://d2e3241a.ngrok.io/users'
+  const URL = 'http://dc06e5ce.ngrok.io/users'
   const [userInfo, setUserInfo] = useState([])
   
   useEffect(() => {
@@ -23,7 +22,7 @@ const LoginPage = props => {
         }, []);
 
   const handlePress = (user_id) => {
-    props.navigation.navigate("Events", {id: user_id})
+    props.navigation.navigate("Home", {id: user_id})
   }
 
   return (
@@ -32,7 +31,6 @@ const LoginPage = props => {
         {userInfo.map(user => <UserCard key={user.id} {...user} handlePress={handlePress}/>)}
         <TextInput />
       </View>
-        < NavBar {...props} />
     </>
   );
 };

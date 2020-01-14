@@ -1,49 +1,70 @@
-//step 1 renders blank eventInfoCard
-//step 2 renders guests to add - renders UsersFriends
-
 import React, { Fragment } from 'react';
-import { Text, View, Button, StyleSheet } from 'react-native';
+import { Text, View, Button, TextInput, StyleSheet, TouchableOpacity } from 'react-native';
 
-import {Calendar, CalendarList, Agenda} from 'react-native-calendars';
-
-import DatePicker from '../eventsComponents/DateTimePicker'
+import moment from 'moment';
+//moment().add(1, 'hours').calendar()
+//moment().format("MMM D h a")
 
 const CreateEvent = props => {
 
+  const [eventTitle, onChangeeventTitle] = React.useState('Event Title');
+  const [eventTime, onChangeeventTime] = React.useState(`${moment().add(1, 'hours').calendar()}`);
+  const [eventLocation, onChangeeventLocation] = React.useState('Location');
+  const [moreInfo, onChangemoreInfo] = React.useState('More Info');
+
+  const selectDateAndTime = () => {
+      props.navigation.navigate("Date and Time")
+  }
+
   return (
     <>
-    <View style={styles.calendar} >
-      <CalendarList
-        // Callback which gets executed when visible months change in scroll view. Default = undefined
-        onVisibleMonthsChange={(months) => {console.log('now these months are visible', months);}}
-        // Max amount of months allowed to scroll to the past. Default = 50
-        pastScrollRange={0}
-        // Max amount of months allowed to scroll to the future. Default = 50
-        futureScrollRange={1}
-        // Enable or disable scrolling of calendar list
-        scrollEnabled={true}
-        // Enable or disable vertical scroll indicator. Default = false
-        showScrollIndicator={true}
-        // ...calendarParams
-        onDayPress={(day) => {console.log('selected day', day.timestamp/1000)}}
-        // Handler which gets executed on day long press. Default = undefined
-        />
-    </View>
-    <View style={styles.datepicker} >
-      <DatePicker />
-      {/* <Button title="Date Picked"/> */}
+    <View style={styles.container} >
+        <TextInput style={styles.eventTitle} 
+          onChangeText={text => onChangeeventTitle(text)}
+          placeholder={eventTitle}/>
+        <TouchableOpacity style={styles.timeinput} activeOpacity={0.6} onPress={selectDateAndTime}>
+          <Text onChangeText={text => onChangeeventTime(text)}>{eventTime}</Text>
+        </TouchableOpacity>
+        <TextInput style={styles.textinput} 
+          onChangeText={text => onChangeeventLocation(text)}
+          placeholder={eventLocation}/>
+        <TextInput style={styles.textinput} 
+        onChangeText={text => onChangemoreInfo(text)}
+        placeholder={moreInfo}/>
+        <Button title="Create" onPress={() => console.log("create event!!")}/>
     </View>
     </>
   );
 };
 
+export default CreateEvent;
+
 const styles = StyleSheet.create({
-  calendar: {
-    flex: 2
+  container: {
+    height: "50%",
+    width: "80%",
+    alignSelf: "center"
   },
-  datepicker: {
+  eventTitle: {
+    height: 40, 
+    borderColor: 'gray', 
+    borderWidth: 1,
+    flex: 2,
+    marginVertical: 10,
+    fontSize: 40
+  },
+  textinput: {
+    height: 40, 
+    borderColor: 'gray', 
+    borderWidth: 1,
+    flex: 1,
+    marginVertical: 5
+  },
+  timeinput: {
+    height: 40, 
+    borderColor: 'gray', 
+    borderWidth: 1,
+    justifyContent: "center",
     flex: 1
   }
-});
-
-export default CreateEvent;
+})

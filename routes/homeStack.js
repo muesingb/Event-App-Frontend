@@ -2,18 +2,30 @@ import { createStackNavigator } from 'react-navigation-stack';
 import { createAppContainer } from 'react-navigation';
 
 import LoginPage from '../src/loginView/LoginPage'
+import Events from '../src/calendarView/Events'
+import EventPage from '../src/eventsView/eventsContainers/EventShowPage'
 import CreateEvent from '../src/eventsView/eventsContainers/CreateEvent'
-import Events from '../src/calendarView/calendarContainers/Events'
+import SelectDateScreen from '../src/eventsView/eventsContainers/SelectDateScreen'
+
 
 const screens = {
-    Home: {
-        screen: LoginPage
+    "Log In": {
+        screen: LoginPage,
+        navigationOptions: {
+            header: () => false
+        },
     },
-    Events: {
+    "Home": {
         screen: Events
     },
-    CreateEvent: {
+    "Event": {
+        screen: EventPage
+    },
+    "Create Event": {
         screen: CreateEvent
+    },
+    "Date and Time": {
+        screen: SelectDateScreen
     }
 };
 
