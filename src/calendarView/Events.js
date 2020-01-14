@@ -5,8 +5,10 @@ import { Text, View } from 'react-native';
 import EventCard from './EventCard'
 import NavBar from '../appView/NavBar'
 
+import TabNavigator from '../../routes/tabNavigator'
+
 const Events = (props) => {
-    const URL = `http://dc06e5ce.ngrok.io/users/${props.navigation.state.params.id}`
+    const URL = `http://faceb934.ngrok.io/users/${props.navigation.state.params.id}`
     const [userEvents, setUserEvents] = useState([])
     const [userView, setUserView] = useState("all")
     
@@ -28,6 +30,7 @@ const Events = (props) => {
     <>
       {userEvents.events ? userEvents.events.map(event => <EventCard key={event.id} {...event} handlePress={handlePress}/>) : null}
       < NavBar {...props} />
+      {/* <TabNavigator /> */}
     </>
   );
 //add flatlist for userevents

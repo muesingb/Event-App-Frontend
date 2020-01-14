@@ -8,7 +8,7 @@ import UserCard from '../usersView/userComponents/UserCard'
 
 const LoginPage = props => {
 
-  const URL = 'http://dc06e5ce.ngrok.io/users'
+  const URL = 'http://faceb934.ngrok.io/users'
   const [userInfo, setUserInfo] = useState([])
   
   useEffect(() => {
@@ -28,7 +28,7 @@ const LoginPage = props => {
   return (
     <>
       <View style={styles.container}>
-        {userInfo.map(user => <UserCard key={user.id} {...user} handlePress={handlePress}/>)}
+        {userInfo.map(user => <UserCard key={user.id} {...user} handlePress={handlePress} />)}
         <TextInput />
       </View>
     </>

@@ -7,8 +7,22 @@ const NavButton = props => {
   const [link, setLink] = useState("")
   
     const handlePress = () => {
-        console.log("hi")
-        props.navigation.navigate("Create Event")
+        switch(props.name) {
+          case "Home":
+            props.navigation.navigate("Home")
+            break;
+          case "Profile":
+            // props.navigation.navigate("Profile")
+            //needs user_id
+            break;
+          case "Create Event":
+            props.navigation.navigate("Create Event")
+            break;
+          case "Your Events":
+            // props.navigation.navigate("Your Events")
+            break;
+        }
+        // props.navigation.navigate("Create Event")
     }
 
     console.log(props)

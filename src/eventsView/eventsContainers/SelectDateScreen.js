@@ -10,6 +10,10 @@ import DatePicker from '../eventsComponents/DateTimePicker'
 
 const SelectDateScreen = props => {
 
+  const handleDateSelect = (day) => {
+    console.log('selected day', day.timestamp)
+  }
+
   return (
     <>
     <View style={styles.calendar} >
@@ -19,13 +23,13 @@ const SelectDateScreen = props => {
         // Max amount of months allowed to scroll to the past. Default = 50
         pastScrollRange={0}
         // Max amount of months allowed to scroll to the future. Default = 50
-        futureScrollRange={1}
+        futureScrollRange={50}
         // Enable or disable scrolling of calendar list
         scrollEnabled={true}
         // Enable or disable vertical scroll indicator. Default = false
         showScrollIndicator={true}
         // ...calendarParams
-        onDayPress={(day) => {console.log('selected day', day.timestamp)}}
+        onDayPress={(day) => handleDateSelect(day)}
         // Handler which gets executed on day long press. Default = undefined
         />
     </View>

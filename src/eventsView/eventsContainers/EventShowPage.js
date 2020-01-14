@@ -1,12 +1,11 @@
 //renders filled out eventInfoCard
 import React, { useState, useEffect } from 'react';
 import { Text, View } from 'react-native';
-
-import moment from 'moment';
+import EventInfoCard from '../eventsComponents/EventInfoCard'
 
 const EventPage = (props) => {
 
-    const URL = `http://dc06e5ce.ngrok.io/events/${props.navigation.state.params.id}`
+    const URL = `http://faceb934.ngrok.io/events/${props.navigation.state.params.id}`
     const [eventInfo, setEventInfo] = useState({})
   
     useEffect(() => {
@@ -19,14 +18,15 @@ const EventPage = (props) => {
               })
           }, []);
 
-    console.log(eventInfo.event)
+    const handleUserProfilePress = (user_id) => {
+        props.navigation.navigate("Profile", {id: user_id})
+    }
 
     return (
         <View>
-            <Text>hiiii from showpage</Text>
-            <Text>{props.navigation.state.params.id}</Text>
-            {/* <Text>{moment(eventInfo.event.start_time).add(1, 'hours').calendar()}</Text> */}
-            {/* <Text>{eventInfo.event.name}</Text> */}
+            {eventInfo.event? 
+            <EventInfoCard {...eventInfo} handleUserProfilePress={handleUserProfilePress}/>
+            : null}
         </View>
     );
 

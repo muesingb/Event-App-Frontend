@@ -1,5 +1,5 @@
 //renders userinfo for FriendsPage, FriendRequests, and UserShowPage
-import React from 'react';
+import React, { Fragment } from 'react';
 import { Text, View, StyleSheet } from 'react-native';
 
 const UserCard = props => {
@@ -7,11 +7,11 @@ const UserCard = props => {
   const handlePress = (props) => {
     props.handlePress(props.id)
   }
-
+  
   return (
-    <View style={styles.users} >
-      <Text onPress={() => handlePress(props)}>{props.name}</Text>
-    </View>
+    <>
+      <Text style={styles.users} onPress={() => handlePress(props)}>{props.name}</Text>
+    </>
   );
 
 };
