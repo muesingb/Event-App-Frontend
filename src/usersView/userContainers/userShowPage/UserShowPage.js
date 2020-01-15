@@ -5,7 +5,7 @@ import { Text, View, StyleSheet } from 'react-native';
 import UserCard from '../../userComponents/UserCard'
 
 const UserShowPage = props => {
-    const URL = `http://faceb934.ngrok.io/users/${props.navigation.state.params.id}`
+    const URL = `http://29b40895.ngrok.io/users/${props.navigation.state.params.id}`
     const [userInfo, setUserInfo] = useState({})
   
     useEffect(() => {

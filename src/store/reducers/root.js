@@ -1,7 +1,7 @@
 import { ALL_USERS, UPDATE_USER, CREATED_EVENTS, ATTENDING_EVENTS, RENDERED_EVENTS } from '../actions/actionTypes'
 
 const initialState = {
-    currentUser: null,
+    currentUser: 0,
     allUsers: [],
     createdEvents: [],
     attendingEvents: [],
@@ -13,11 +13,11 @@ const reducer = (state = initialState, action) => {
         case ALL_USERS:
             return {
                 ...state,
-                currentUser: action.user_id
+                currentUser: action.payload
             };
         default:
             return state;
     }
 };
 
-export default reducer;
+export default reducer

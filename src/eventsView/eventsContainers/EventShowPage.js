@@ -5,7 +5,7 @@ import EventInfoCard from '../eventsComponents/EventInfoCard'
 
 const EventPage = (props) => {
 
-    const URL = `http://faceb934.ngrok.io/events/${props.navigation.state.params.id}`
+    const URL = `http://29b40895.ngrok.io/events/${props.navigation.state.params.id}`
     const [eventInfo, setEventInfo] = useState({})
   
     useEffect(() => {

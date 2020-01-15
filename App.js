@@ -1,33 +1,22 @@
-import React, { useState, useEffect, Fragment } from 'react';
+import React from 'react';
 import Navigator from './routes/homeStack'
 import { connect } from 'react-redux'
 import TabNavigator from './routes/tabNavigator.js'
 
+import configureStore from './src/store/configureStore';
+import { Provider } from 'react-redux';
+
 const App = () => {
 
   return (
-    <>
+    <Provider store={configureStore} >
       <Navigator />
       {/* <TabNavigator /> */}
-    </>
+    </Provider>
   );
-}
+};
 
-export default App
-
-// const mapStateToProps = state => {
-//   return {
-//     currentUser: state.eventsAndUsers.currentUser
-//   };
-// };
-
-// const mapDispatchToProps = dispatch => {
-//   return {
-//     onUpdateUser: (user_id) => dispatch(addUser(user_id))
-//   };
-// };
-
-// export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default App;
 
 // fetch('http://localhost:3000/events')
 //       .then(response => response.json())

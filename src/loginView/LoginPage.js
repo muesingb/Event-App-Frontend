@@ -3,13 +3,25 @@
 
 import React, { Fragment, useState, useEffect } from 'react';
 import { View, StyleSheet, TextInput } from 'react-native';
+import { useSelector, useDispatch } from 'react-redux'
 
 import UserCard from '../usersView/userComponents/UserCard'
 
 const LoginPage = props => {
+  const test = useSelector(state => state)
+  const testDispatch = useDispatch()
+  console.log(test.eventsAndUsers.currentUser)
+  console.log("hiii")
 
-  const URL = 'http://faceb934.ngrok.io/users'
+  const URL = 'http://29b40895.ngrok.io/users'
   const [userInfo, setUserInfo] = useState([])
+
+  const handleTestDispatch = (user_id) => {
+    testDispatch({
+      type: 'ALL_USERS',
+      payload: user_id
+    })
+  }
   
   useEffect(() => {
         fetch(URL)
@@ -22,7 +34,8 @@ const LoginPage = props => {
         }, []);
 
   const handlePress = (user_id) => {
-    props.navigation.navigate("Home", {id: user_id})
+    handleTestDispatch(user_id)
+    // props.navigation.navigate("Home", {id: user_id})
   }
 
   return (

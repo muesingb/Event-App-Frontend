@@ -8,7 +8,7 @@ import NavBar from '../appView/NavBar'
 import TabNavigator from '../../routes/tabNavigator'
 
 const Events = (props) => {
-    const URL = `http://faceb934.ngrok.io/users/${props.navigation.state.params.id}`
+    const URL = `http://29b40895.ngrok.io/users/${props.navigation.state.params.id}`
     const [userEvents, setUserEvents] = useState([])
     const [userView, setUserView] = useState("all")
     
