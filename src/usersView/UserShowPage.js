@@ -2,10 +2,10 @@
 import React, { useState, useEffect, Fragment } from 'react';
 import { Text, View, StyleSheet } from 'react-native';
 
-import UserCard from '../../userComponents/UserCard'
+import UserCard from './UserCard'
 
 const UserShowPage = props => {
-    const URL = `http://29b40895.ngrok.io/users/${props.navigation.state.params.id}`
+    const URL = `http://b43ae261.ngrok.io/users/${props.navigation.state.params.id}`
     const [userInfo, setUserInfo] = useState({})
   
     useEffect(() => {

@@ -1,11 +1,14 @@
 //renders filled out eventInfoCard
 import React, { useState, useEffect } from 'react';
 import { Text, View } from 'react-native';
+import { useSelector, useDispatch } from 'react-redux';
+
 import EventInfoCard from '../eventsComponents/EventInfoCard'
+// import {} from '../store/actions/'
 
 const EventPage = (props) => {
 
-    const URL = `http://29b40895.ngrok.io/events/${props.navigation.state.params.id}`
+    const URL = `http://b43ae261.ngrok.io/events/${props.navigation.state.params.id}`
     const [eventInfo, setEventInfo] = useState({})
   
     useEffect(() => {

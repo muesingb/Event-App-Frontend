@@ -7,7 +7,7 @@ import Events from '../src/calendarView/Events'
 import EventPage from '../src/eventsView/eventsContainers/EventShowPage'
 import CreateEvent from '../src/eventsView/eventsContainers/CreateEvent'
 import SelectDateScreen from '../src/eventsView/eventsContainers/SelectDateScreen'
-import UserShowPage from '../src/usersView/userContainers/userShowPage/UserShowPage'
+import UserShowPage from '../src/usersView/UserShowPage'
 
 import NavBar from '../src/appView/NavBar'
 import Navigator from './homeStack'

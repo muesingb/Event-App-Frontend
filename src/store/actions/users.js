@@ -1,14 +1,25 @@
-import { ALL_USERS, UPDATE_USER } from './actionTypes'
+import { FETCH_USERS, UPDATE_USER } from './actionTypes'
 
-export const addUser = (user_id) => {
+const URL = 'http://b43ae261.ngrok.io'
+
+export const currentUser = (user_id) => {
     return {
         type: UPDATE_USER,
-        user_id: user_id
+        payload: user_id
     }
 };
 
-export const allUsers = () => {
-    return {
-        type: ALL_USERS
+export const fetchUsers = () => {
+    return (dispatch) => {
+        fetch(`${URL}/users`)
+              .then(response => response.json())
+              .then(data => {
+                dispatch({ 
+                    type: FETCH_USERS,
+                    payload: data
+                })
+              }).catch(function(err) {
+                console.log( err);
+              })
     }
 };

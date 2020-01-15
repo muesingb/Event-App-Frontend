@@ -5,8 +5,6 @@ import moment from 'moment';
 
 const EventCard = (props) => {
 
-  // console.log(props.id.navigation)
-
   return (
     <TouchableOpacity style={styles.container} activeOpacity={0.6} onPress={() => props.handlePress(props.id)}>
         <Text style={styles.day}>{moment(props.start_time).format('dddd')}</Text>

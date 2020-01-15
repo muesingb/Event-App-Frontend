@@ -1,1 +1,0 @@
-//renders all other userCards (AllUsers) that user is not friends with

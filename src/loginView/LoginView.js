@@ -1,1 +1,0 @@
-//handles which view to show for login: LoginPage, Guest, or CreateUser

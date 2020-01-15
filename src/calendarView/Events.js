@@ -1,6 +1,8 @@
 //renders all eventCards for user if state is "all" or user's events if state is "user"
 import React, { useState, useEffect, Fragment } from 'react';
 import { Text, View } from 'react-native';
+import { useSelector, useDispatch  } from 'react-redux';
+import { fetchEvents } from '../store/actions/events'
 
 import EventCard from './EventCard'
 import NavBar from '../appView/NavBar'
@@ -8,18 +10,11 @@ import NavBar from '../appView/NavBar'
 import TabNavigator from '../../routes/tabNavigator'
 
 const Events = (props) => {
-    const URL = `http://29b40895.ngrok.io/users/${props.navigation.state.params.id}`
-    const [userEvents, setUserEvents] = useState([])
-    const [userView, setUserView] = useState("all")
-    
+    const state = useSelector(state => state)
+    const dispatch = useDispatch()
+
     useEffect(() => {
-          fetch(URL)
-              .then(response => response.json())
-              .then(data => {
-                setUserEvents(data)
-              }).catch(function(err) {
-                console.log( err);
-              })
+      dispatch(fetchEvents())
     }, []);
    
     const handlePress = (event_id) => {
@@ -28,7 +23,7 @@ const Events = (props) => {
 
   return (
     <>
-      {userEvents.events ? userEvents.events.map(event => <EventCard key={event.id} {...event} handlePress={handlePress}/>) : null}
+      {state.eventsAndUsers.allEvents ? state.eventsAndUsers.allEvents.map(event => <EventCard key={event.id} {...event} handlePress={handlePress}/>) : null}
       < NavBar {...props} />
       {/* <TabNavigator /> */}
     </>

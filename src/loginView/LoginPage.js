@@ -1,47 +1,30 @@
 //renders first page of app. Has 3 options: already existing user login, create a new user
 //or sign in as guest
-
-import React, { Fragment, useState, useEffect } from 'react';
+import React, { Fragment, useEffect } from 'react';
 import { View, StyleSheet, TextInput } from 'react-native';
-import { useSelector, useDispatch } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux';
 
-import UserCard from '../usersView/userComponents/UserCard'
+import UserCard from '../usersView/UserCard'
+import { currentUser, fetchUsers } from '../store/actions/users'
 
 const LoginPage = props => {
-  const test = useSelector(state => state)
-  const testDispatch = useDispatch()
-  console.log(test.eventsAndUsers.currentUser)
-  console.log("hiii")
+  const state = useSelector(state => state)
+  const dispatch = useDispatch()
+  const AsyncDispatch = useDispatch()
 
-  const URL = 'http://29b40895.ngrok.io/users'
-  const [userInfo, setUserInfo] = useState([])
-
-  const handleTestDispatch = (user_id) => {
-    testDispatch({
-      type: 'ALL_USERS',
-      payload: user_id
-    })
-  }
-  
   useEffect(() => {
-        fetch(URL)
-            .then(response => response.json())
-            .then(data => {
-              setUserInfo(data)
-            }).catch(function(err) {
-              console.log( err);
-            })
-        }, []);
+    AsyncDispatch(fetchUsers())
+    }, []);
 
   const handlePress = (user_id) => {
-    handleTestDispatch(user_id)
-    // props.navigation.navigate("Home", {id: user_id})
+    dispatch(currentUser(user_id))
+    props.navigation.navigate("Home", {id: user_id})
   }
 
   return (
     <>
       <View style={styles.container}>
-        {userInfo.map(user => <UserCard key={user.id} {...user} handlePress={handlePress} />)}
+        {state.eventsAndUsers.allUsers.map(user => <UserCard key={user.id} {...user} handlePress={handlePress} />)}
         <TextInput />
       </View>
     </>

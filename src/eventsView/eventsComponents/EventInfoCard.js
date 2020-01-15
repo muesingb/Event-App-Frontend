@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react';
 import { Text, View, StyleSheet } from 'react-native';
-import UserCard from '../../usersView/userComponents/UserCard'
+import UserCard from '../../usersView/UserCard'
 
 import moment from 'moment';
 
