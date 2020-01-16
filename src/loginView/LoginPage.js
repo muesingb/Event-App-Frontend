@@ -5,19 +5,22 @@ import { View, StyleSheet, TextInput } from 'react-native';
 import { useSelector, useDispatch } from 'react-redux';
 
 import UserCard from '../usersView/UserCard'
-import { currentUser, fetchUsers } from '../store/actions/users'
+import { currentUser, showUser, currentUserInfo, fetchUsers } from '../store/actions/users'
+import { toggleRenderedEvents } from '../store/actions/events'
 
 const LoginPage = props => {
   const state = useSelector(state => state)
   const dispatch = useDispatch()
-  const AsyncDispatch = useDispatch()
 
   useEffect(() => {
-    AsyncDispatch(fetchUsers())
+    dispatch(fetchUsers())
     }, []);
 
   const handlePress = (user_id) => {
     dispatch(currentUser(user_id))
+    dispatch(showUser(user_id))
+    dispatch(currentUserInfo(user_id))
+    dispatch(toggleRenderedEvents("all"))
     props.navigation.navigate("Home", {id: user_id})
   }
 

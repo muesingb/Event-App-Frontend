@@ -1,14 +1,16 @@
 //renders filled out eventInfoCard
 import React, { useState, useEffect } from 'react';
-import { Text, View } from 'react-native';
-import { useSelector, useDispatch } from 'react-redux';
+import { View } from 'react-native';
+import { useDispatch } from 'react-redux';
 
 import EventInfoCard from '../eventsComponents/EventInfoCard'
-// import {} from '../store/actions/'
+
+import { showUserInfo, showUser } from '../../store/actions/users'
 
 const EventPage = (props) => {
+    const dispatch = useDispatch()
 
-    const URL = `http://b43ae261.ngrok.io/events/${props.navigation.state.params.id}`
+    const URL = `http://31a2db4e.ngrok.io/events/${props.navigation.state.params.id}`
     const [eventInfo, setEventInfo] = useState({})
   
     useEffect(() => {
@@ -22,6 +24,8 @@ const EventPage = (props) => {
           }, []);
 
     const handleUserProfilePress = (user_id) => {
+        dispatch(showUser(user_id))
+        dispatch(showUserInfo(user_id))
         props.navigation.navigate("Profile", {id: user_id})
     }
 

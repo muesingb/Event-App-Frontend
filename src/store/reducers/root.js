@@ -1,12 +1,13 @@
-import { FETCH_USERS, UPDATE_USER, CREATED_EVENTS, ATTENDING_EVENTS, RENDERED_EVENTS, FETCH_EVENTS } from '../actions/actionTypes'
+import { FETCH_USERS, UPDATE_USER, UPDATE_SHOW_USER, UPDATE_USER_INFO, UPDATE_SHOW_USER_INFO, ATTEND_EVENT, RENDERED_EVENTS, FETCH_EVENTS, CREATE_EVENT } from '../actions/actionTypes'
 
 const initialState = {
-    currentUser: 0,
+    currentUser: null,
+    showUser: null,
     allUsers: [],
-    createdEvents: [],
-    attendingEvents: [],
+    currentUserInfo: [],
+    showUserInfo: [],
     allEvents: [],
-    eventView: "all"
+    allEventsView: true
 }
 
 const reducer = (state = initialState, action) => {
@@ -23,29 +24,47 @@ const reducer = (state = initialState, action) => {
                 currentUser: action.payload
             };
             break
-        case CREATED_EVENTS:
+        case UPDATE_SHOW_USER:
+        return {
+            ...state,
+            showUser: action.payload
+        };
+        break
+        case UPDATE_USER_INFO:
+            return {
+                ...state,
+                currentUserInfo: action.payload
+            };
+            break
+        case UPDATE_SHOW_USER_INFO:
+            return {
+                ...state,
+                showUserInfo: action.payload
+            };
+            break
+        case ATTEND_EVENT:
             // return {
             //     ...state,
-            //     currentUser: action.payload
+            //     currentUserInfo: action.payload
             // };
-            break
-        case ATTENDING_EVENTS:
-            // return {
-            //     ...state,
-            //     currentUser: action.payload
-            // };
-            break
+            // break
         case RENDERED_EVENTS:
-            // return {
-            //     ...state,
-            //     eventView: "user"
-            // };
+            return {
+                ...state,
+                allEventsView: action.payload
+            };
             break
         case FETCH_EVENTS:
             return {
                 ...state,
                allEvents: action.payload
             };
+            break
+        case CREATE_EVENT:
+            // return {
+            //     ...state,
+            //     allEvents: action.payload
+            // };
             break
         default:
             return state;

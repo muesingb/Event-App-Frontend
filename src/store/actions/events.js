@@ -1,25 +1,16 @@
-import { CREATED_EVENTS, ATTENDING_EVENTS, RENDERED_EVENTS, FETCH_EVENTS } from './actionTypes'
+import {  RENDERED_EVENTS, FETCH_EVENTS, CREATE_EVENT } from './actionTypes'
 
-const URL = 'http://b43ae261.ngrok.io'
+const URL = 'http://31a2db4e.ngrok.io'
 
-export const createdEvents = (user_id) => {
+//toggle rendered events view between all (true) and user's events (false)
+export const toggleRenderedEvents = (view) => {
     return {
-        type: CREATED_EVENTS
+        type: RENDERED_EVENTS,
+        payload: view
     }
 };
 
-export const attendingEvents = (user_id) => {
-    return {
-        type: ATTENDING_EVENTS
-    }
-};
-
-export const renderedEvents = () => {
-    return {
-        type: RENDERED_EVENTS
-    }
-};
-
+//fetch all events
 export const fetchEvents = () => {
     return (dispatch) => {
         fetch(`${URL}/events`)
@@ -34,3 +25,21 @@ export const fetchEvents = () => {
               })
     }
 }
+
+//create event
+// export const createEvent = () => {
+//     return (dispatch) => {
+//         fetch('http://localhost:3000/events', {
+//             method: 'POST',
+//             body: JSON.stringify({name: "whadddddupppp", password: "poop"}),
+//             headers: {
+//                 'Accept': 'application/json',
+//                 'content-type': 'application/json'
+//             }
+//             })
+//             .then(response => response.json())
+//             .then(data => {
+//                 console.log(data)
+//             })
+//     }
+// }
