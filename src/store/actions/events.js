@@ -1,6 +1,22 @@
-import {  RENDERED_EVENTS, FETCH_EVENTS, CREATE_EVENT } from './actionTypes'
+import {  UPDATE_SHOW_EVENT_INFO, RENDERED_EVENTS, FETCH_EVENTS, CREATE_EVENT } from './actionTypes'
 
 const URL = 'http://31a2db4e.ngrok.io'
+
+//fetches show event's information from event_id given
+export const showEventInfo = (event_id) => {
+    return (dispatch) => {
+        fetch(`${URL}/events/${event_id}`)
+              .then(response => response.json())
+              .then(data => {
+                dispatch({ 
+                    type: UPDATE_SHOW_EVENT_INFO,
+                    payload: data
+                })
+              }).catch(function(err) {
+                console.log( err);
+              })
+    }
+}
 
 //toggle rendered events view between all (true) and user's events (false)
 export const toggleRenderedEvents = (view) => {

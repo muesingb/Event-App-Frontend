@@ -26,7 +26,7 @@ const Events = (props) => {
     <>
       <View>
         <Text>
-          Welcome {state.eventsAndUsers.currentUserInfo.user.name}
+          Welcome {state.eventsAndUsers.currentUserInfo.user ? state.eventsAndUsers.currentUserInfo.user.name : null }
         </Text>
       </View>
       {(state.eventsAndUsers.allEventsView === "all" && state.eventsAndUsers.allEvents) ? 

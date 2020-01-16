@@ -13,6 +13,9 @@ export const UPDATE_USER_INFO = 'UPDATE_USER_INFO'
 //update show user information
 export const UPDATE_SHOW_USER_INFO = 'UPDATE_SHOW_USER_INFO'
 
+//update show event
+export const UPDATE_SHOW_EVENT_INFO = 'UPDATE_SHOW_EVENT_INFO'
+
 //create new userEvent and current user will attend event
 export const ATTEND_EVENT = 'ATTEND_EVENT'
 
