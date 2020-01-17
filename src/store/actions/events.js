@@ -47,7 +47,7 @@ export const createEvent = (eventInfo) => {
     return (dispatch) => {
         fetch(`${URL}/events`, {
             method: 'POST',
-            body: JSON.stringify({name: "whadddddupppp"}),
+            body: JSON.stringify(eventInfo),
             headers: {
                 'Accept': 'application/json',
                 'content-type': 'application/json'
@@ -57,9 +57,11 @@ export const createEvent = (eventInfo) => {
             .then(data => {
                 dispatch({ 
                     type: CREATE_EVENT,
-                    payload: "hitting the right action"
+                    payload: data
                 })
-            })
+            }).catch(function(err) {
+                console.log( err);
+              })
     }
 }
 

@@ -13,7 +13,11 @@ const EventPage = (props) => {
     const dispatch = useDispatch()
 
     useEffect(() => {
-        dispatch(showEventInfo(props.navigation.state.params.id))
+        if (props.navigation.state.params.id) {
+            dispatch(showEventInfo(props.navigation.state.params.id))
+        } else {
+            dispatch(showEventInfo(state.eventsAndUsers.showEventInfo.id))
+        }
     }, []);
 
     const handleUserProfilePress = (user_id) => {

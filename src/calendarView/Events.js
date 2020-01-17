@@ -1,6 +1,6 @@
 //renders all eventCards for user if state is true or user's events if state is false
 import React, { useEffect, Fragment } from 'react';
-import { Text, View } from 'react-native';
+import { Text, View, FlatList } from 'react-native';
 import { useSelector, useDispatch  } from 'react-redux';
 import { fetchEvents } from '../store/actions/events'
 
@@ -22,6 +22,12 @@ const Events = (props) => {
       props.navigation.navigate("Event", {id: event_id})
     }
 
+    const data = () => {
+      return (state.eventsAndUsers.allEventsView === "all" && state.eventsAndUsers.allEvents) ? 
+      state.eventsAndUsers.allEvents
+       : state.eventsAndUsers.currentUserInfo.created_events
+    }
+
   return (
     <>
       <View>
@@ -29,14 +35,11 @@ const Events = (props) => {
           Welcome {state.eventsAndUsers.currentUserInfo.user ? state.eventsAndUsers.currentUserInfo.user.name : null }
         </Text>
       </View>
-      {(state.eventsAndUsers.allEventsView === "all" && state.eventsAndUsers.allEvents) ? 
-      state.eventsAndUsers.allEvents.map(event => <EventCard key={event.id} {...event} handlePress={handlePress}/>)
-       : state.eventsAndUsers.currentUserInfo.created_events.map(event => <EventCard key={event.id} {...event} handlePress={handlePress}/>)}
+  <FlatList data={data()} renderItem={({item}) => <View><EventCard key={item.id} {...item} handlePress={handlePress}/></View>}/>
       < NavBar {...props} />
       {/* <TabNavigator /> */}
     </>
   );
-//add flatlist for userevents
 };
 
 export default Events;

@@ -1,6 +1,7 @@
 import React, { Fragment, useState, useEffect } from 'react';
 import { Text, View, Button, TextInput, StyleSheet, TouchableOpacity } from 'react-native';
 import { useSelector, useDispatch } from 'react-redux';
+import { StackActions } from 'react-navigation';
 import moment from 'moment';
 import { updateEventTime } from '../../store/actions/events'
 
@@ -19,8 +20,17 @@ const CreateEvent = props => {
   const [moreInfo, onChangemoreInfo] = useState('More Info');
 
   const currentTime = useSelector(state => state.eventsAndUsers.selectedEventTime)
-  
 
+  const eventInfo = {name: eventTitle, 
+    creator_id: state.eventsAndUsers.currentUser, 
+    start_time: 1581465600000,
+    location: eventLocation,
+    decription: moreInfo
+  }
+
+  console.log(eventTime)
+  console.log(props.navigation.state.params)
+  
   const selectDateAndTime = () => {
       props.navigation.navigate("Date and Time", { selectedTime: eventTime })
   }
@@ -33,6 +43,17 @@ const CreateEvent = props => {
     let timeNow = Date.now()
     dispatch(updateEventTime(timeNow))
     }, []);
+
+  const handleCreateEvent = () => {
+    dispatch(createEvent(eventInfo))
+
+    const popAction = StackActions.pop({
+      n: 1,
+    });
+
+    props.navigation.dispatch(popAction);
+    props.navigation.navigate("Event", {id: state.eventsAndUsers.showEventInfo.id})
+  }
 
   return (
     <>
@@ -49,7 +70,7 @@ const CreateEvent = props => {
         <TextInput style={styles.textinput} 
         onChangeText={text => onChangemoreInfo(text)}
         placeholder={moreInfo}/>
-        <Button title="Create" onPress={() => createEvent}/>
+        <Button title="Create" onPress={handleCreateEvent}/>
     </View>
     </>
   );

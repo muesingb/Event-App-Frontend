@@ -10,7 +10,7 @@ const initialState = {
     showEventInfo: [],
     allEvents: [],
     allEventsView: true,
-    selectedEventTime: 0,
+    selectedEventTime: 0
 }
 
 const reducer = (state = initialState, action) => {
@@ -72,8 +72,8 @@ const reducer = (state = initialState, action) => {
         case CREATE_EVENT:
             return {
                 ...state,
-                allEvents: "hitting the right action my guy"
-                // allEvents: [...state.allEvents, action.payload]
+                allEvents: [...state.allEvents, action.payload],
+                showEventInfo: action.payload
             };
             break
         case UPDATE_EVENT_TIME:
