@@ -27,3 +27,5 @@ export const FETCH_EVENTS = 'FETCH_EVENTS'
 
 //create a new event
 export const CREATE_EVENT = 'CREATE_EVENT'
+
+export const UPDATE_EVENT_TIME = 'UPDATE_EVENT_TIME'

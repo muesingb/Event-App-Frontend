@@ -1,4 +1,5 @@
-import { FETCH_USERS, UPDATE_USER, UPDATE_SHOW_USER, UPDATE_USER_INFO, UPDATE_SHOW_USER_INFO, UPDATE_SHOW_EVENT_INFO, ATTEND_EVENT, RENDERED_EVENTS, FETCH_EVENTS, CREATE_EVENT } from '../actions/actionTypes'
+import { FETCH_USERS, UPDATE_USER, UPDATE_SHOW_USER, UPDATE_USER_INFO, UPDATE_SHOW_USER_INFO, UPDATE_SHOW_EVENT_INFO, ATTEND_EVENT, RENDERED_EVENTS, FETCH_EVENTS, CREATE_EVENT, UPDATE_EVENT_TIME } from '../actions/actionTypes'
+
 
 const initialState = {
     currentUser: null,
@@ -8,7 +9,8 @@ const initialState = {
     showUserInfo: [],
     showEventInfo: [],
     allEvents: [],
-    allEventsView: true
+    allEventsView: true,
+    selectedEventTime: 0,
 }
 
 const reducer = (state = initialState, action) => {
@@ -68,11 +70,19 @@ const reducer = (state = initialState, action) => {
             };
             break
         case CREATE_EVENT:
-            // return {
-            //     ...state,
-            //     allEvents: action.payload
-            // };
+            return {
+                ...state,
+                allEvents: "hitting the right action my guy"
+                // allEvents: [...state.allEvents, action.payload]
+            };
             break
+        case UPDATE_EVENT_TIME:
+        return {
+            ...state,
+            selectedEventTime: action.payload
+            // allEvents: [...state.allEvents, action.payload]
+        };
+        break
         default:
             return state;
     }

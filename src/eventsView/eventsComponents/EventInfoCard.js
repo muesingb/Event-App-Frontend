@@ -5,7 +5,6 @@ import UserCard from '../../usersView/UserCard'
 import moment from 'moment';
 
 const EventInfoCard = (props) => {
-
     return (
         <>
             <Text style={styles.time} >{moment(props.event.start_time).add(1, 'hours').calendar()}
@@ -27,7 +26,6 @@ const EventInfoCard = (props) => {
             </View>
         </>
     );
-
 };
 
 export default EventInfoCard;

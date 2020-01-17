@@ -1,7 +1,7 @@
 //renders first page of app. Has 3 options: already existing user login, create a new user
 //or sign in as guest
 import React, { Fragment, useEffect } from 'react';
-import { View, StyleSheet, TextInput } from 'react-native';
+import { View, StyleSheet, TextInput, ImageBackground } from 'react-native';
 import { useSelector, useDispatch } from 'react-redux';
 
 import UserCard from '../usersView/UserCard'
@@ -25,12 +25,14 @@ const LoginPage = props => {
   }
 
   return (
-    <>
+    <View>
+    <ImageBackground  style= { styles.backgroundImage } style={{width: '100%', height: '100%'}} source={{uri: 'https://i.pinimg.com/originals/73/ba/6b/73ba6bb4edf6d6143bbdc9f83fa21fe3.jpg'}}>
       <View style={styles.container}>
         {state.eventsAndUsers.allUsers.map(user => <UserCard key={user.id} {...user} handlePress={handlePress} />)}
         <TextInput />
       </View>
-    </>
+    </ImageBackground>
+    </ View>
   );
 };
 

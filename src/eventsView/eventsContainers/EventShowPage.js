@@ -24,7 +24,7 @@ const EventPage = (props) => {
 
     return (
         <View>
-            {state.eventsAndUsers.showEventInfo ? 
+            {state.eventsAndUsers.showEventInfo.event ? 
             <EventInfoCard {...state.eventsAndUsers.showEventInfo} handleUserProfilePress={handleUserProfilePress}/>
             : null}
         </View>

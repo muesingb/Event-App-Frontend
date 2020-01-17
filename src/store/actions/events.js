@@ -1,6 +1,6 @@
-import {  UPDATE_SHOW_EVENT_INFO, RENDERED_EVENTS, FETCH_EVENTS, CREATE_EVENT } from './actionTypes'
+import {  UPDATE_SHOW_EVENT_INFO, RENDERED_EVENTS, FETCH_EVENTS, CREATE_EVENT, UPDATE_EVENT_TIME } from './actionTypes'
 
-const URL = 'http://31a2db4e.ngrok.io'
+const URL = 'http://90c39a46.ngrok.io'
 
 //fetches show event's information from event_id given
 export const showEventInfo = (event_id) => {
@@ -43,19 +43,30 @@ export const fetchEvents = () => {
 }
 
 //create event
-// export const createEvent = () => {
-//     return (dispatch) => {
-//         fetch('http://localhost:3000/events', {
-//             method: 'POST',
-//             body: JSON.stringify({name: "whadddddupppp", password: "poop"}),
-//             headers: {
-//                 'Accept': 'application/json',
-//                 'content-type': 'application/json'
-//             }
-//             })
-//             .then(response => response.json())
-//             .then(data => {
-//                 console.log(data)
-//             })
-//     }
-// }
+export const createEvent = (eventInfo) => {
+    return (dispatch) => {
+        fetch(`${URL}/events`, {
+            method: 'POST',
+            body: JSON.stringify({name: "whadddddupppp"}),
+            headers: {
+                'Accept': 'application/json',
+                'content-type': 'application/json'
+            }
+            })
+            .then(response => response.json())
+            .then(data => {
+                dispatch({ 
+                    type: CREATE_EVENT,
+                    payload: "hitting the right action"
+                })
+            })
+    }
+}
+
+//Updates event time for newly created events
+export const updateEventTime = (time) => {
+    return {
+        type: UPDATE_EVENT_TIME,
+        payload: time
+    }
+}

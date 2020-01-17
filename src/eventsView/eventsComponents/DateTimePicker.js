@@ -9,6 +9,7 @@ export default class DatePicker extends Component {
   }
 
   setDate = (event, date) => {
+    console.log(date)
     date = date || this.state.date;
 
     this.setState({
