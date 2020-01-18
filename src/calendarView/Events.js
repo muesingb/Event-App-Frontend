@@ -35,7 +35,7 @@ const Events = (props) => {
           Welcome {state.eventsAndUsers.currentUserInfo.user ? state.eventsAndUsers.currentUserInfo.user.name : null }
         </Text>
       </View>
-  <FlatList data={data()} renderItem={({item}) => <View><EventCard key={item.id} {...item} handlePress={handlePress}/></View>}/>
+      <FlatList data={data()} renderItem={({item}) => <EventCard key={item.id} {...item} handlePress={handlePress}/>}/>
       < NavBar {...props} />
       {/* <TabNavigator /> */}
     </>

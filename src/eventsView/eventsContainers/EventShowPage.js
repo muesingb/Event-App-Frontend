@@ -1,5 +1,5 @@
 //renders filled out eventInfoCard
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { View } from 'react-native';
 import { useSelector, useDispatch } from 'react-redux';
 
@@ -13,12 +13,16 @@ const EventPage = (props) => {
     const dispatch = useDispatch()
 
     useEffect(() => {
+        // dispatch(showEventInfo(props.navigation.state.params.id))
         if (props.navigation.state.params.id) {
             dispatch(showEventInfo(props.navigation.state.params.id))
         } else {
             dispatch(showEventInfo(state.eventsAndUsers.showEventInfo.id))
         }
     }, []);
+
+    // console.log(props.navigation.state.params.id)
+    // console.log(state.eventsAndUsers.showEventInfo.id)
 
     const handleUserProfilePress = (user_id) => {
         dispatch(showUser(user_id))

@@ -3,6 +3,7 @@ import { FETCH_USERS, UPDATE_USER, UPDATE_SHOW_USER, UPDATE_USER_INFO, UPDATE_SH
 
 const initialState = {
     currentUser: null,
+    currentUserAttending: false,
     showUser: null,
     allUsers: [],
     currentUserInfo: [],
@@ -10,7 +11,8 @@ const initialState = {
     showEventInfo: [],
     allEvents: [],
     allEventsView: true,
-    selectedEventTime: 0
+    selectedEventTime: 0,
+    testState: ''
 }
 
 const reducer = (state = initialState, action) => {
@@ -52,11 +54,11 @@ const reducer = (state = initialState, action) => {
             };
             break
         case ATTEND_EVENT:
-            // return {
-            //     ...state,
-            //     currentUserInfo: action.payload
-            // };
-            // break
+            return {
+                ...state,
+                testState: action.payload
+            };
+            break
         case RENDERED_EVENTS:
             return {
                 ...state,
@@ -80,7 +82,6 @@ const reducer = (state = initialState, action) => {
         return {
             ...state,
             selectedEventTime: action.payload
-            // allEvents: [...state.allEvents, action.payload]
         };
         break
         default:

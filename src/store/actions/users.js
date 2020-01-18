@@ -1,6 +1,6 @@
 import { FETCH_USERS, UPDATE_USER, UPDATE_SHOW_USER, UPDATE_USER_INFO, UPDATE_SHOW_USER_INFO, ATTEND_EVENT } from './actionTypes'
 
-const URL = 'http://90c39a46.ngrok.io'
+const URL = 'http://f827952b.ngrok.io'
 
 //sets current user to user_id given
 export const currentUser = (user_id) => {
@@ -66,20 +66,23 @@ export const fetchUsers = () => {
     }
 };
 
-//create new userEvent and current user will attend event
-// export const attendEvent = (event_id) => {
-//   return (dispatch) => {
-//       fetch('http://localhost:3000/events', {
-//           method: 'POST',
-//           body: JSON.stringify({name: "whadddddupppp", password: "poop"}),
-//           headers: {
-//               'Accept': 'application/json',
-//               'content-type': 'application/json'
-//           }
-//           })
-//           .then(response => response.json())
-//           .then(data => {
-//               console.log(data)
-//           })
-//   }
-// }
+// create new userEvent and current user will attend event
+export const attendEvent = (body) => {
+  return (dispatch) => {
+      fetch(`${URL}/user_events`, {
+          method: 'POST',
+          body: JSON.stringify(body),
+          headers: {
+              'Accept': 'application/json',
+              'content-type': 'application/json'
+          }
+          })
+          .then(response => response.json())
+          .then(data => {
+            dispatch({ 
+              type: ATTEND_EVENT,
+              payload: data
+            })
+          })
+  }
+}

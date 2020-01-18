@@ -28,8 +28,8 @@ const CreateEvent = props => {
     decription: moreInfo
   }
 
-  console.log(eventTime)
-  console.log(props.navigation.state.params)
+  // console.log(eventTime)
+  // console.log(props.navigation.state.params)
   
   const selectDateAndTime = () => {
       props.navigation.navigate("Date and Time", { selectedTime: eventTime })
