@@ -12,7 +12,8 @@ const initialState = {
     allEvents: [],
     allEventsView: true,
     selectedEventTime: 0,
-    testState: ''
+    fetchBody: '',
+    test: ''
 }
 
 const reducer = (state = initialState, action) => {
@@ -56,7 +57,7 @@ const reducer = (state = initialState, action) => {
         case ATTEND_EVENT:
             return {
                 ...state,
-                testState: action.payload
+                fetchBody: action.payload
             };
             break
         case RENDERED_EVENTS:
@@ -75,7 +76,11 @@ const reducer = (state = initialState, action) => {
             return {
                 ...state,
                 allEvents: [...state.allEvents, action.payload],
-                showEventInfo: action.payload
+                showEventInfo: action.payload,
+                currentUserInfo: {...state.currentUserInfo, 
+                    created_events: [...state.currentUserInfo.created_events, action.payload],
+                    events: [...state.currentUserInfo.events, action.payload]
+                }
             };
             break
         case UPDATE_EVENT_TIME:

@@ -1,57 +1,69 @@
-import React, { useState, Component } from 'react';
+import React, { useState, useEffect, Component } from 'react';
 import {View, Button, Platform} from 'react-native';
 import { useSelector, useDispatch } from 'react-redux';
 import DateTimePicker from '@react-native-community/datetimepicker';
+import { updateEventTime } from '../../store/actions/events'
 import moment from 'moment';
+import { NativeViewGestureHandler } from 'react-native-gesture-handler';
 
-// const DatePicker = () => {
-//   // const state = useSelector(state => state)
-//   // const dispatch = useDispatch()
+const DatePicker = () => {
+  const state = useSelector(state => state.eventsAndUsers)
+  const eventTime = useSelector(state => state.eventsAndUsers.selectedEventTime)
+  const dispatch = useDispatch()
 
-//   const [dateState, changeDate] = useState(Date.now('2020-06-12'))
+  useEffect(()=>{
+    changeDate(new Date(state.selectedEventTime))
+    },[eventTime])
 
-//   const setDate = (event, date) => {
-//     console.log(date)
-//     date = date || dateState;
+  //Date.now() or new Date(dateObj)
+  const [dateState, changeDate] = useState(new Date(state.selectedEventTime))
 
-//   }
-
-//   return (
-//     <View>
-//         {<DateTimePicker value={dateState}
-//                     mode="time"
-//                     is24Hour={true}
-//                     display="default"
-//                     onChange={setDate} />
-//         }
-//       </View>
-//   )
-// }
-
-// export default DatePicker
-
-export default class DatePicker extends Component {
-  state = {
-    date: new Date('2020-06-12'),
+  const setDate = (event, date) => {
+    const difference = date.getTime() - dateState.getTime()
+    const newTime = eventTime + difference
+    if (newTime == 0) {
+      dispatch(updateEventTime(newTime))
+    }
+    // const updateTime = new Date(newTime)
+    // changeDate(updateTime);
   }
 
-  setDate = (event, date) => {
-    console.log(date)
-    date = date || this.state.date;
-
-  }
-
-  render() {
-
-    return (
-      <View>
-        {<DateTimePicker value={this.state.date}
+  return (
+    <View>
+        {<DateTimePicker value={dateState}
                     mode="time"
                     is24Hour={true}
                     display="default"
-                    onChange={this.setDate} />
+                    onChange={setDate} />
         }
       </View>
-    );
-  }
+  )
 }
+
+export default DatePicker
+
+// export default class DatePicker extends Component {
+//   state = {
+//     date: new Date(1580428800000),
+//   }
+
+//   setDate = (event, date) => {
+//     console.log(date)
+//     date = date || this.state.date;
+
+//   }
+
+//   render() {
+
+//     return (
+//       <View>
+//         {<DateTimePicker value={this.state.date}
+//                     mode="time"
+//                     is24Hour={true}
+//                     display="default"
+//                     onChange={this.setDate} />
+//         }
+//       </View>
+//     );
+//   }
+// }

@@ -28,11 +28,24 @@ const Events = (props) => {
        : state.eventsAndUsers.currentUserInfo.created_events
     }
 
+    const noEvents = () => {
+      if (state.eventsAndUsers.allEventsView === "all" && !state.eventsAndUsers.allEvents[0]) {
+        return "Sorry, there aren't any events yet"
+      } else if (state.eventsAndUsers.allEventsView === "user" && !state.eventsAndUsers.currentUserInfo.created_events[0]) {
+        return "Sorry, you haven't created any events yet"
+      }
+    }
+
   return (
     <>
       <View>
         <Text>
           Welcome {state.eventsAndUsers.currentUserInfo.user ? state.eventsAndUsers.currentUserInfo.user.name : null }
+        </Text>
+      </View>
+      <View>
+        <Text>
+          {noEvents()}
         </Text>
       </View>
       <FlatList data={data()} renderItem={({item}) => <EventCard key={item.id} {...item} handlePress={handlePress}/>}/>

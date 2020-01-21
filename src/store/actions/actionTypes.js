@@ -19,6 +19,9 @@ export const UPDATE_SHOW_EVENT_INFO = 'UPDATE_SHOW_EVENT_INFO'
 //create new userEvent and current user will attend event
 export const ATTEND_EVENT = 'ATTEND_EVENT'
 
+//deletes specified userEvent and current user will no longer attend
+export const UNATTEND_EVENT = 'UNATTEND_EVENT'
+
 //should events render user's events (false) or all events (true). Default is true
 export const RENDERED_EVENTS = 'RENDERED_EVENTS'
 

@@ -23,20 +23,17 @@ const CreateEvent = props => {
 
   const eventInfo = {name: eventTitle, 
     creator_id: state.eventsAndUsers.currentUser, 
-    start_time: 1581465600000,
+    start_time: state.eventsAndUsers.selectedEventTime,
     location: eventLocation,
     decription: moreInfo
   }
-
-  // console.log(eventTime)
-  // console.log(props.navigation.state.params)
   
   const selectDateAndTime = () => {
       props.navigation.navigate("Date and Time", { selectedTime: eventTime })
   }
 
   useEffect(()=>{
-    onChangeeventDay(`${moment(state.eventsAndUsers.selectedEventTime).add(1, 'hours').calendar()}`)
+    onChangeeventDay(`${moment(state.eventsAndUsers.selectedEventTime + 100000000).add(1, 'hours').calendar()}`)
     },[currentTime])
 
   useEffect(() => {
@@ -62,7 +59,7 @@ const CreateEvent = props => {
           onChangeText={text => onChangeeventTitle(text)}
           placeholder={eventTitle}/>
         <TouchableOpacity style={styles.timeinput} activeOpacity={0.6} onPress={selectDateAndTime}>
-          <Text onChangeText={text => onChangeeventDay(text)}>{eventDay} {eventTime}</Text>
+          <Text onChangeText={text => onChangeeventDay(text)}>{eventDay}</Text>
         </TouchableOpacity>
         <TextInput style={styles.textinput} 
           onChangeText={text => onChangeeventLocation(text)}

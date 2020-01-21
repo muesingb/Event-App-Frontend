@@ -3,17 +3,30 @@ import { Text, View, Button, StyleSheet } from 'react-native';
 import { useSelector, useDispatch } from 'react-redux';
 import UserCard from '../../usersView/UserCard'
 import moment from 'moment';
-import { attendEvent } from '../../store/actions/users'
+import { attendEvent, unattendEvent } from '../../store/actions/users'
 
 const EventInfoCard = (props) => {
     const state = useSelector(state => state)
     const dispatch = useDispatch()
+    const currentUserInfo = useSelector(state => state.eventsAndUsers.currentUserInfo)
+    const [userAttendance, toggleUserAttendance] = useState();
+    const [attendees, onChangeAttendees] = useState(props.attendees);
 
-    const [userAttendance, toggleUserAttendance] = useState(props.attendees.map(attendee => attendee.id).includes(state.eventsAndUsers.currentUser));
+    const attendingEvent = () => {
+        toggleUserAttendance(true)
+        dispatch(attendEvent({event_id: props.id, attendee_id: state.eventsAndUsers.currentUser}))
+    }
 
-    // useEffect(() => {
-    //     toggleUserAttendance(props.attendees.map(attendee => attendee.id).includes(state.eventsAndUsers.currentUser))
-    // }, [userAttendance]);
+    const unattendingEvent = () => {
+        toggleUserAttendance(false)
+        dispatch(unattendEvent({event_id: props.id, attendee_id: state.eventsAndUsers.currentUser}))
+    }
+
+    useEffect(()=>{
+        currentUserInfo.events 
+        ? toggleUserAttendance(currentUserInfo.events.map(event => event.id).includes(props.event.id))
+        : null
+    },[currentUserInfo])
 
     const handleButtonPress = () => {
         toggleUserAttendance(true)
@@ -28,7 +41,7 @@ const EventInfoCard = (props) => {
             <Text style={styles.eventName}>{props.event.name}</Text>
             <Text style={styles.location}>{props.event.location}</Text>
             <View style={styles.userAttendance}>
-                <Button title={userAttendance ? "Going" : "Go?"} onPress={userAttendance ? null : handleButtonPress} />
+                <Button title={userAttendance ? "Going" : "Go?"} onPress={userAttendance ? unattendingEvent : attendingEvent}/>
             </View>
             <View style={styles.attendeesContainer}>
                 <Text>
@@ -41,9 +54,8 @@ const EventInfoCard = (props) => {
             </View>
             <View style={styles.attendeesContainer}>
                 <Text>Attendees</Text>
-                <Text>{props.attendees.map(attendee => <UserCard key={attendee.id} {...attendee} handlePress={props.handleUserProfilePress}/>)}</Text>
+                <Text>{attendees.map(attendee => <UserCard key={attendee.id} {...attendee} handlePress={props.handleUserProfilePress}/>)}</Text>
             </View>
-            
         </>
     );
 };

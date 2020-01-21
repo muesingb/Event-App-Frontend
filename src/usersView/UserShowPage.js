@@ -17,8 +17,8 @@ const UserShowPage = () => {
 
   return (
     <View>
-        <Text>Hiii from user show page</Text>
         <Text>{state.eventsAndUsers.showUserInfo.user ? state.eventsAndUsers.showUserInfo.user.name : null}</Text>
+        <Text>{state.eventsAndUsers.showUserInfo.user ? state.eventsAndUsers.showUserInfo.user.description : null}</Text>
         {/* {userInfo.user? 
             <UserCard {...userInfo.user}/>
             : null} */}

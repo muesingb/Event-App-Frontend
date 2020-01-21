@@ -7,6 +7,8 @@ const UserCard = props => {
   const handlePress = (props) => {
     props.handlePress(props.id)
   }
+
+  console.log(props)
   
   return (
     <>
@@ -20,6 +22,7 @@ export default UserCard;
 
 const styles = StyleSheet.create({
   users: {
-    flex: 1
+    flex: 1,
+    color: "red"
   }
 });

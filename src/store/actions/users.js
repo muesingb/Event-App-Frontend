@@ -1,6 +1,6 @@
-import { FETCH_USERS, UPDATE_USER, UPDATE_SHOW_USER, UPDATE_USER_INFO, UPDATE_SHOW_USER_INFO, ATTEND_EVENT } from './actionTypes'
+import { FETCH_USERS, UPDATE_USER, UPDATE_SHOW_USER, UPDATE_USER_INFO, UPDATE_SHOW_USER_INFO, ATTEND_EVENT, UNATTEND_EVENT } from './actionTypes'
 
-const URL = 'http://f827952b.ngrok.io'
+const URL = 'http://a3a6d604.ngrok.io'
 
 //sets current user to user_id given
 export const currentUser = (user_id) => {
@@ -79,10 +79,25 @@ export const attendEvent = (body) => {
           })
           .then(response => response.json())
           .then(data => {
+            console.log(data)
             dispatch({ 
               type: ATTEND_EVENT,
               payload: data
             })
+          })
+  }
+}
+
+//deletes specified userEvent and current user will no longer attend
+export const unattendEvent = (body) => {
+  return (dispatch) => {
+      fetch(`${URL}/user_events`, {
+          method: 'DELETE',
+          body: JSON.stringify(body),
+          headers: {
+              'Accept': 'application/json',
+              'content-type': 'application/json'
+          }
           })
   }
 }

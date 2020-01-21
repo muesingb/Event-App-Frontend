@@ -17,18 +17,3 @@ const App = () => {
 };
 
 export default App;
-
-// fetch('http://localhost:3000/events', {
-//   method: 'POST',
-//   body: JSON.stringify({name: "whadddddupppp", password: "poop"}),
-
-//   headers: {
-//     'Accept': 'application/json',
-//     'content-type': 'application/json'
-//   }
-
-// })
-//   .then(response => response.json())
-//   .then(data => {
-//     console.log(data)
-//   })
