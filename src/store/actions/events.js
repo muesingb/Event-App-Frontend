@@ -1,6 +1,6 @@
 import {  UPDATE_SHOW_EVENT_INFO, RENDERED_EVENTS, FETCH_EVENTS, CREATE_EVENT, UPDATE_EVENT_TIME } from './actionTypes'
 
-const URL = 'http://a3a6d604.ngrok.io'
+const URL = 'http://7bf28ea6.ngrok.io'
 
 //fetches show event's information from event_id given
 export const showEventInfo = (event_id) => {
@@ -8,6 +8,7 @@ export const showEventInfo = (event_id) => {
         fetch(`${URL}/events/${event_id}`)
               .then(response => response.json())
               .then(data => {
+                  console.log(data)
                 dispatch({ 
                     type: UPDATE_SHOW_EVENT_INFO,
                     payload: data
@@ -55,6 +56,7 @@ export const createEvent = (eventInfo) => {
             })
             .then(response => response.json())
             .then(data => {
+                dispatch(showEventInfo(data.id))
                 dispatch({ 
                     type: CREATE_EVENT,
                     payload: data

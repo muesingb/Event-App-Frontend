@@ -30,7 +30,7 @@ const NavButton = props => {
     }
 
   return (
-    <View style={styles.button} >
+    <View style={props.name === "Home" ? styles.selectedButton : styles.button} >
       <Text onPress={handlePress}>{props.name}</Text>
       {/* <Button title={props.name} onPress={handlePress}/> */}
     </View>
@@ -43,6 +43,13 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         padding: 10,
         width: "100%"
+    },
+    selectedButton: {
+        flex: 1,
+        justifyContent: 'center',
+        padding: 10,
+        width: "100%",
+        backgroundColor: "gray"
     }
 })
 

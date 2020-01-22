@@ -4,28 +4,18 @@ import { Text, StyleSheet, TouchableOpacity, View, Button } from 'react-native';
 import { useSelector, useDispatch } from 'react-redux';
 import moment from 'moment';
 import { attendEvent, unattendEvent } from '../store/actions/users'
+import { Portal } from 'react-native-paper';
 
 const EventCard = (props) => {
   const state = useSelector(state => state)
   const dispatch = useDispatch()
   const currentUserInfo = useSelector(state => state.eventsAndUsers.currentUserInfo)
   const [userAttendance, toggleUserAttendance] = useState();
+  const [going, changeGoing] = useState()
 
-  const attendingEvent = () => {
-    toggleUserAttendance(true)
-    dispatch(attendEvent({event_id: props.id, attendee_id: state.eventsAndUsers.currentUser}))
-  }
-
-  const unattendingEvent = () => {
-    toggleUserAttendance(false)
-    if (currentUserInfo.created_events.map(event => event.id).includes(props.id)) {
-      console.log("current user created this event")
-    } else {
-      dispatch(unattendEvent({event_id: props.id, attendee_id: state.eventsAndUsers.currentUser}))
-    }
-  }
-
-  console.log(currentUserInfo.created_events)
+  useEffect(()=>{
+    userAttendance ? changeGoing("Going") : changeGoing("Go?")
+  },[userAttendance])
 
   useEffect(()=>{
     currentUserInfo.events 
@@ -33,8 +23,22 @@ const EventCard = (props) => {
     : null
   },[currentUserInfo])
 
+  const attendingEvent = () => {
+    dispatch(attendEvent({event_id: props.id, attendee_id: state.eventsAndUsers.currentUser}))
+    toggleUserAttendance(true)
+  }
+
+  const unattendingEvent = () => {
+    if (currentUserInfo.created_events.map(event => event.id).includes(props.id)) {
+      alert("Cannot unattend an event you created")
+    } else {
+      toggleUserAttendance(false)
+      dispatch(unattendEvent({event_id: props.id, attendee_id: state.eventsAndUsers.currentUser}))
+    }
+  }
+
   return (
-    <TouchableOpacity style={styles.container} activeOpacity={0.6} onPress={() => props.handlePress(props.id)}>
+    <TouchableOpacity style={styles.container} activeOpacity={0.6} onPress={() => props.handlePress(props)}>
       <View style={styles.buttonView}>
         <View>
           <Text style={styles.day}>{moment(props.start_time).format('dddd')}</Text>
@@ -42,7 +46,7 @@ const EventCard = (props) => {
           <Text style={styles.time}>{moment(props.start_time).format('LT')}</Text>
           <Text>{props.name}</Text>
         </View>
-        <Button title={userAttendance ? "Going" : "Go?"} onPress={userAttendance ? unattendingEvent : attendingEvent}/>
+        { going && !props.view ? <Button title={going} onPress={userAttendance ? unattendingEvent : attendingEvent}/> : null}
       </View>
     </TouchableOpacity>
   );

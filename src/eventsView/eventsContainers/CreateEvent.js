@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { StackActions } from 'react-navigation';
 import moment from 'moment';
 import { updateEventTime } from '../../store/actions/events'
+import { Form, Field } from 'react-native-validate-form';
 
 import { createEvent } from '../../store/actions/events'
 //moment().add(1, 'hours').calendar()
@@ -43,13 +44,17 @@ const CreateEvent = props => {
 
   const handleCreateEvent = () => {
     dispatch(createEvent(eventInfo))
-
     const popAction = StackActions.pop({
       n: 1,
     });
 
     props.navigation.dispatch(popAction);
-    props.navigation.navigate("Event", {id: state.eventsAndUsers.showEventInfo.id})
+    props.navigation.navigate("Event", {id: state.eventsAndUsers.showEventId})
+  }
+
+  const validations = () => {
+    //if selected time is in the past alert that cannot create event
+    //each textinput needs to have something filled out in order to create event
   }
 
   return (

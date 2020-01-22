@@ -1,6 +1,6 @@
 import { FETCH_USERS, UPDATE_USER, UPDATE_SHOW_USER, UPDATE_USER_INFO, UPDATE_SHOW_USER_INFO, ATTEND_EVENT, UNATTEND_EVENT } from './actionTypes'
 
-const URL = 'http://a3a6d604.ngrok.io'
+const URL = 'http://7bf28ea6.ngrok.io'
 
 //sets current user to user_id given
 export const currentUser = (user_id) => {
@@ -98,6 +98,14 @@ export const unattendEvent = (body) => {
               'Accept': 'application/json',
               'content-type': 'application/json'
           }
+          })
+          .then(response => response.json())
+          .then(data => {
+            console.log(data)
+            dispatch({ 
+              type: UNATTEND_EVENT,
+              payload: data
+            })
           })
   }
 }

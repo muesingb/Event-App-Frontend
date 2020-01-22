@@ -28,6 +28,7 @@ const SelectDateScreen = props => {
 
   //change selected date shown
   const handleDateSelect = (day) => {
+    console.log(day)
     onChangeeventTime(day.timestamp)
     onChangeEventDisplay(day.dateString)
   }

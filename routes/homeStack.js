@@ -2,7 +2,8 @@ import { createStackNavigator } from 'react-navigation-stack';
 import { createAppContainer } from 'react-navigation';
 
 import React from 'react';
-import { Button } from 'react-native';
+import { Button, StyleSheet } from 'react-native';
+import { useSelector, useDispatch  } from 'react-redux';
 
 import LoginPage from '../src/loginView/LoginPage'
 import Events from '../src/calendarView/Events'
@@ -11,6 +12,7 @@ import CreateEvent from '../src/eventsView/eventsContainers/CreateEvent'
 import SelectDateScreen from '../src/eventsView/eventsContainers/SelectDateScreen'
 import UserShowPage from '../src/usersView/UserShowPage'
 
+// const state = useSelector(state => state)
 
 const screens = {
     "Log In": {
@@ -19,7 +21,7 @@ const screens = {
             header: () => false
         },
     },
-    "Home": {
+    "Home" : {
         screen: Events
     },
     "Event": {
@@ -46,3 +48,12 @@ const screens = {
 const HomeStack = createStackNavigator(screens);
 
 export default createAppContainer(HomeStack);
+
+const styles = StyleSheet.create({
+    welcome: {
+     fontWeight: "bold",
+     fontSize: 40,
+     alignSelf: "center",
+     marginTop: 10
+    }
+  })

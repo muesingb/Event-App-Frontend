@@ -11,18 +11,31 @@ import { showEventInfo } from '../../store/actions/events'
 const EventPage = (props) => {
     const state = useSelector(state => state)
     const dispatch = useDispatch()
+    const event = useSelector(state => state.eventsAndUsers.showEventId)
 
-    useEffect(() => {
-        // dispatch(showEventInfo(props.navigation.state.params.id))
-        if (props.navigation.state.params.id) {
-            dispatch(showEventInfo(props.navigation.state.params.id))
-        } else {
-            dispatch(showEventInfo(state.eventsAndUsers.showEventInfo.id))
-        }
-    }, []);
+    // useEffect(() => {
+    //     // if (props.navigation.state.params.id) {
+    //     //     dispatch(showEventInfo(props.navigation.state.params.id))
+    //     // }
+    //     dispatch(showEventInfo(state.eventsAndUsers.showEventId))
+    // }, []);
 
-    // console.log(props.navigation.state.params.id)
-    // console.log(state.eventsAndUsers.showEventInfo.id)
+    // const eventId = () => {
+    //     if (props.navigation.state.params.id) {
+    //         return props.navigation.state.params.id
+    //     } else if (event) {
+    //         return event
+    //     }
+    // }
+
+    // useEffect(() => {
+    //     // if (props.navigation.state.params.id) {
+    //     //     dispatch(showEventInfo(props.navigation.state.params.id))
+    //     // } else {
+    //         // dispatch(showEventInfo(event))
+    //     // }
+    //     dispatch(showEventInfo(event))
+    // }, [event]);
 
     const handleUserProfilePress = (user_id) => {
         dispatch(showUser(user_id))

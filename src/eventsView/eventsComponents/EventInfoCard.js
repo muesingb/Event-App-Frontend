@@ -14,24 +14,27 @@ const EventInfoCard = (props) => {
 
     const attendingEvent = () => {
         toggleUserAttendance(true)
-        dispatch(attendEvent({event_id: props.id, attendee_id: state.eventsAndUsers.currentUser}))
+        dispatch(attendEvent({event_id: props.event.id, attendee_id: state.eventsAndUsers.currentUser}))
     }
 
     const unattendingEvent = () => {
-        toggleUserAttendance(false)
-        dispatch(unattendEvent({event_id: props.id, attendee_id: state.eventsAndUsers.currentUser}))
+        if (currentUserInfo.created_events.map(event => event.id).includes(props.event.id)) {
+            alert("Cannot unattend an event you created")
+          } else {
+            toggleUserAttendance(false)
+            dispatch(unattendEvent({event_id: props.event.id, attendee_id: state.eventsAndUsers.currentUser}))
+          }
     }
 
-    useEffect(()=>{
+    useEffect(()=> {
         currentUserInfo.events 
         ? toggleUserAttendance(currentUserInfo.events.map(event => event.id).includes(props.event.id))
         : null
     },[currentUserInfo])
 
-    const handleButtonPress = () => {
-        toggleUserAttendance(true)
-        dispatch(attendEvent({event_id: state.eventsAndUsers.showEventInfo.event.id, attendee_id: state.eventsAndUsers.currentUser}))
-    }
+    useEffect(()=>{
+        onChangeAttendees(state.eventsAndUsers.showEventInfo.attendees)
+    },[state.eventsAndUsers.showEventInfo.attendees])
 
     return (
         <>

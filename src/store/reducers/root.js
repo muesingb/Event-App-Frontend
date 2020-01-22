@@ -1,4 +1,4 @@
-import { FETCH_USERS, UPDATE_USER, UPDATE_SHOW_USER, UPDATE_USER_INFO, UPDATE_SHOW_USER_INFO, UPDATE_SHOW_EVENT_INFO, ATTEND_EVENT, RENDERED_EVENTS, FETCH_EVENTS, CREATE_EVENT, UPDATE_EVENT_TIME } from '../actions/actionTypes'
+import { FETCH_USERS, UPDATE_USER, UPDATE_SHOW_USER, UPDATE_USER_INFO, UPDATE_SHOW_USER_INFO, UPDATE_SHOW_EVENT_INFO, ATTEND_EVENT, UNATTEND_EVENT, RENDERED_EVENTS, FETCH_EVENTS, CREATE_EVENT, UPDATE_EVENT_TIME } from '../actions/actionTypes'
 
 
 const initialState = {
@@ -9,6 +9,7 @@ const initialState = {
     currentUserInfo: [],
     showUserInfo: [],
     showEventInfo: [],
+    showEventId: null,
     allEvents: [],
     allEventsView: true,
     selectedEventTime: 0,
@@ -51,13 +52,26 @@ const reducer = (state = initialState, action) => {
         case UPDATE_SHOW_EVENT_INFO:
             return {
                 ...state,
-                showEventInfo: action.payload
+                showEventInfo: action.payload,
+                showEventId: action.payload.event.id
             };
             break
         case ATTEND_EVENT:
             return {
                 ...state,
-                fetchBody: action.payload
+                fetchBody: action.payload,
+                currentUserInfo: {...state.currentUserInfo, 
+                    events: [...state.currentUserInfo.events, action.payload]
+                }
+            };
+            break
+        case UNATTEND_EVENT:
+            return {
+                ...state,
+                fetchBody: action.payload,
+                // currentUserInfo: {...state.currentUserInfo, 
+                //     events: [...state.currentUserInfo.events, action.payload]
+                // }
             };
             break
         case RENDERED_EVENTS:
@@ -73,10 +87,12 @@ const reducer = (state = initialState, action) => {
             };
             break
         case CREATE_EVENT:
+            console.log(action.payload)
             return {
                 ...state,
                 allEvents: [...state.allEvents, action.payload],
-                showEventInfo: action.payload,
+                // showEventId: action.payload.id,
+                // showEventInfo: action.payload,
                 currentUserInfo: {...state.currentUserInfo, 
                     created_events: [...state.currentUserInfo.created_events, action.payload],
                     events: [...state.currentUserInfo.events, action.payload]

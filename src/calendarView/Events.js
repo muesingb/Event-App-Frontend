@@ -1,8 +1,9 @@
 //renders all eventCards for user if state is true or user's events if state is false
 import React, { useEffect, Fragment } from 'react';
-import { Text, View, FlatList } from 'react-native';
+import { Text, View, FlatList, StyleSheet } from 'react-native';
 import { useSelector, useDispatch  } from 'react-redux';
 import { fetchEvents } from '../store/actions/events'
+import { showEventInfo } from '../store/actions/events'
 
 import EventCard from './EventCard'
 import NavBar from '../appView/NavBar'
@@ -18,8 +19,9 @@ const Events = (props) => {
       dispatch(fetchEvents())
     }, []);
    
-    const handlePress = (event_id) => {
-      props.navigation.navigate("Event", {id: event_id})
+    const handlePress = (event) => {
+      dispatch(showEventInfo(event.id))
+      props.navigation.navigate("Event")
     }
 
     const data = () => {
@@ -39,7 +41,7 @@ const Events = (props) => {
   return (
     <>
       <View>
-        <Text>
+        <Text style={styles.welcome}>
           Welcome {state.eventsAndUsers.currentUserInfo.user ? state.eventsAndUsers.currentUserInfo.user.name : null }
         </Text>
       </View>
@@ -56,3 +58,12 @@ const Events = (props) => {
 };
 
 export default Events;
+
+const styles = StyleSheet.create({
+  welcome: {
+   fontWeight: "bold",
+   fontSize: 40,
+   alignSelf: "center",
+   marginTop: 10
+  }
+})
