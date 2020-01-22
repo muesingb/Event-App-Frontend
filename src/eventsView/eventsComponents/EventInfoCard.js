@@ -51,9 +51,10 @@ const EventInfoCard = (props) => {
             </Text>
             <Text style={styles.eventName}>{props.event.name}</Text>
             <Text style={styles.location}>{props.event.location}</Text>
-            <View style={styles.userAttendance}>
+            {/* <View style={styles.userAttendance}> */}
                 { going ? <Button title={going} onPress={userAttendance ? unattendingEvent : attendingEvent}/> : null}
-            </View>
+                { going ? <Icon reverse raised name='ios-checkmark' size="26" type='ionicon' color='#517fa4'/> : null}
+            {/* </View> */}
             <View style={styles.attendeesContainer}>
                 <Text style={{marginBottom: 10}}>
                     Event by:
@@ -67,7 +68,7 @@ const EventInfoCard = (props) => {
                 <Text>Going: {props.attendees.length}</Text>
             </View>
             <Text style={styles.attendees}>{attendees.map(attendee => <UserCard key={attendee.id} {...attendee} handlePress={props.handleUserProfilePress}/>)} are going</Text>
-            <Text style={styles.description}>{props.event.description.replace(/[^a-zA-Z ]/g, "")}</Text>
+            <Text style={styles.description}>{props.event.description ? props.event.description.replace(/[^a-zA-Z ]/g, "") : null}</Text>
         </>
     );
 };

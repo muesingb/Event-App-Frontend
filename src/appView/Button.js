@@ -36,7 +36,7 @@ const NavButton = props => {
 
   return (
     <View style={props.name === state.eventsAndUsers.tab ? styles.selectedButton : styles.button} >
-      <Text onPress={handlePress}>{props.name}</Text>
+      <Text style={{alignSelf: "center"}} onPress={handlePress}>{props.name}</Text>
       {/* <Button title={props.name} onPress={handlePress}/> */}
     </View>
   );
@@ -54,7 +54,8 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         padding: 10,
         width: "100%",
-        backgroundColor: "gray"
+        backgroundColor: "gray",
+        opacity: 0.5
     }
 })
 

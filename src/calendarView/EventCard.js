@@ -37,7 +37,6 @@ const EventCard = (props) => {
       dispatch(unattendEvent({event_id: props.id, attendee_id: state.eventsAndUsers.currentUser}))
     }
   }
-  console.log(props)
 
   return (
     <TouchableOpacity style={styles.container} activeOpacity={0.6} onPress={() => props.handlePress(props)}>
