@@ -16,12 +16,6 @@ export const UPDATE_SHOW_USER_INFO = 'UPDATE_SHOW_USER_INFO'
 //update show event
 export const UPDATE_SHOW_EVENT_INFO = 'UPDATE_SHOW_EVENT_INFO'
 
-//create new userEvent and current user will attend event
-export const ATTEND_EVENT = 'ATTEND_EVENT'
-
-//deletes specified userEvent and current user will no longer attend
-export const UNATTEND_EVENT = 'UNATTEND_EVENT'
-
 //should events render user's events (false) or all events (true). Default is true
 export const RENDERED_EVENTS = 'RENDERED_EVENTS'
 
@@ -32,3 +26,6 @@ export const FETCH_EVENTS = 'FETCH_EVENTS'
 export const CREATE_EVENT = 'CREATE_EVENT'
 
 export const UPDATE_EVENT_TIME = 'UPDATE_EVENT_TIME'
+
+//switch tab navigator
+export const UPDATE_TAB = 'UPDATE_TAB'

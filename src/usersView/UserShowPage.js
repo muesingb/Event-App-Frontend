@@ -17,15 +17,18 @@ const UserShowPage = () => {
     }, []);
 
   const data = () => {
-    // return (state.eventsAndUsers.allEventsView === "all" && state.eventsAndUsers.allEvents) ? 
-    // state.eventsAndUsers.allEvents
-    //   : state.eventsAndUsers.currentUserInfo.created_events
     return state.eventsAndUsers.showUserInfo.events
     //selected user's events not current user
   }
 
   const handlePress = (event_id) => {
     props.navigation.navigate("Event", {id: event_id})
+  }
+
+  const noEvents = () => {
+    if (!state.eventsAndUsers.currentUserInfo.events[0]) {
+      return "Sorry, you haven't created any events yet"
+    }
   }
 
   return (
@@ -37,7 +40,10 @@ const UserShowPage = () => {
               source={{uri: (state.eventsAndUsers.showUserInfo.user ? state.eventsAndUsers.showUserInfo.user.image : 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTl1TXk3w-1adamGsmWCmUVm99AxqLMMdAePcMjCxeunMy-f3d-9Q&s')}}
             />
         <Text style={styles.description}>{state.eventsAndUsers.showUserInfo.user ? state.eventsAndUsers.showUserInfo.user.description.replace(/[^a-zA-Z ]/g, "") : null}</Text>
-        <Text style={styles.events}>Events:</Text>
+        <Text style={styles.events}>Upcoming Events:</Text>
+        <Text style={styles.noEvents}>
+          {noEvents()}
+        </Text>
         <FlatList data={data()} renderItem={({item}) => <EventCard key={item.id} {...item} view="profile" handlePress={handlePress}/>}/>
       </ScrollView>
     </View>
@@ -54,10 +60,10 @@ const styles = StyleSheet.create({
     marginVertical: 10
   },
   image: {
-    width: 300, 
-    height: 300,
+    width: 330, 
+    height: 330,
     marginBottom: 20,
-    borderRadius: 5, 
+    borderRadius: 30, 
     alignSelf: "center"
   },
   description: {
@@ -68,5 +74,11 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     fontSize: 30,
     marginVertical: 10
+  },
+  noEvents: {
+    alignSelf: "center",
+    justifyContent: "center",
+    fontSize: 20,
+    marginTop: 20
   }
 });

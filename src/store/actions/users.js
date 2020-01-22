@@ -1,4 +1,5 @@
-import { FETCH_USERS, UPDATE_USER, UPDATE_SHOW_USER, UPDATE_USER_INFO, UPDATE_SHOW_USER_INFO, ATTEND_EVENT, UNATTEND_EVENT } from './actionTypes'
+import { FETCH_USERS, UPDATE_USER, UPDATE_SHOW_USER, UPDATE_USER_INFO, UPDATE_SHOW_USER_INFO } from './actionTypes'
+import { showEventInfo } from './events'
 
 const URL = 'http://7bf28ea6.ngrok.io'
 
@@ -79,11 +80,8 @@ export const attendEvent = (body) => {
           })
           .then(response => response.json())
           .then(data => {
-            console.log(data)
-            dispatch({ 
-              type: ATTEND_EVENT,
-              payload: data
-            })
+            dispatch(currentUserInfo(data.attendee_id))
+            dispatch(showEventInfo(data.event_id))
           })
   }
 }
@@ -101,11 +99,8 @@ export const unattendEvent = (body) => {
           })
           .then(response => response.json())
           .then(data => {
-            console.log(data)
-            dispatch({ 
-              type: UNATTEND_EVENT,
-              payload: data
-            })
+            dispatch(currentUserInfo(data.attendee_id))
+            dispatch(showEventInfo(data.event_id))
           })
   }
 }

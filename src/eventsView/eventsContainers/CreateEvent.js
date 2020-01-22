@@ -1,10 +1,11 @@
 import React, { Fragment, useState, useEffect } from 'react';
-import { Text, View, Button, TextInput, StyleSheet, TouchableOpacity } from 'react-native';
+import { Text, View, Button, TextInput, StyleSheet, TouchableOpacity, ScrollView, TouchableWithoutFeedback } from 'react-native';
 import { useSelector, useDispatch } from 'react-redux';
 import { StackActions } from 'react-navigation';
 import moment from 'moment';
 import { updateEventTime } from '../../store/actions/events'
 import { Form, Field } from 'react-native-validate-form';
+import {Keyboard} from 'react-native'
 
 import { createEvent } from '../../store/actions/events'
 //moment().add(1, 'hours').calendar()
@@ -59,12 +60,13 @@ const CreateEvent = props => {
 
   return (
     <>
-    <View style={styles.container} >
+    <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
+    <View style={styles.container}>
         <TextInput style={styles.eventTitle} 
           onChangeText={text => onChangeeventTitle(text)}
           placeholder={eventTitle}/>
         <TouchableOpacity style={styles.timeinput} activeOpacity={0.6} onPress={selectDateAndTime}>
-          <Text onChangeText={text => onChangeeventDay(text)}>{eventDay}</Text>
+          <Text style={{fontSize: 20}} onChangeText={text => onChangeeventDay(text)}>{eventDay}</Text>
         </TouchableOpacity>
         <TextInput style={styles.textinput} 
           onChangeText={text => onChangeeventLocation(text)}
@@ -74,6 +76,7 @@ const CreateEvent = props => {
         placeholder={moreInfo}/>
         <Button title="Create" onPress={handleCreateEvent}/>
     </View>
+    </TouchableWithoutFeedback>
     </>
   );
 };
@@ -82,7 +85,7 @@ export default CreateEvent;
 
 const styles = StyleSheet.create({
   container: {
-    height: "50%",
+    height: "90%",
     width: "80%",
     alignSelf: "center"
   },
@@ -92,20 +95,24 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     flex: 2,
     marginVertical: 10,
-    fontSize: 40
+    fontSize: 40,
+    borderRadius: 5,
   },
   textinput: {
     height: 40, 
     borderColor: 'gray', 
     borderWidth: 1,
     flex: 1,
-    marginVertical: 5
+    marginVertical: 5,
+    borderRadius: 5
   },
   timeinput: {
     height: 40, 
     borderColor: 'gray', 
     borderWidth: 1,
     justifyContent: "center",
-    flex: 1
+    flex: 1,
+    borderRadius: 5,
+    alignItems: "center"
   }
 })

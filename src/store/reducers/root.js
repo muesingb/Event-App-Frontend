@@ -1,4 +1,4 @@
-import { FETCH_USERS, UPDATE_USER, UPDATE_SHOW_USER, UPDATE_USER_INFO, UPDATE_SHOW_USER_INFO, UPDATE_SHOW_EVENT_INFO, ATTEND_EVENT, UNATTEND_EVENT, RENDERED_EVENTS, FETCH_EVENTS, CREATE_EVENT, UPDATE_EVENT_TIME } from '../actions/actionTypes'
+import { UPDATE_TAB, FETCH_USERS, UPDATE_USER, UPDATE_SHOW_USER, UPDATE_USER_INFO, UPDATE_SHOW_USER_INFO, UPDATE_SHOW_EVENT_INFO, RENDERED_EVENTS, FETCH_EVENTS, CREATE_EVENT, UPDATE_EVENT_TIME } from '../actions/actionTypes'
 
 
 const initialState = {
@@ -13,8 +13,7 @@ const initialState = {
     allEvents: [],
     allEventsView: true,
     selectedEventTime: 0,
-    fetchBody: '',
-    test: ''
+    tab: ""
 }
 
 const reducer = (state = initialState, action) => {
@@ -56,24 +55,6 @@ const reducer = (state = initialState, action) => {
                 showEventId: action.payload.event.id
             };
             break
-        case ATTEND_EVENT:
-            return {
-                ...state,
-                fetchBody: action.payload,
-                currentUserInfo: {...state.currentUserInfo, 
-                    events: [...state.currentUserInfo.events, action.payload]
-                }
-            };
-            break
-        case UNATTEND_EVENT:
-            return {
-                ...state,
-                fetchBody: action.payload,
-                // currentUserInfo: {...state.currentUserInfo, 
-                //     events: [...state.currentUserInfo.events, action.payload]
-                // }
-            };
-            break
         case RENDERED_EVENTS:
             return {
                 ...state,
@@ -87,12 +68,9 @@ const reducer = (state = initialState, action) => {
             };
             break
         case CREATE_EVENT:
-            console.log(action.payload)
             return {
                 ...state,
                 allEvents: [...state.allEvents, action.payload],
-                // showEventId: action.payload.id,
-                // showEventInfo: action.payload,
                 currentUserInfo: {...state.currentUserInfo, 
                     created_events: [...state.currentUserInfo.created_events, action.payload],
                     events: [...state.currentUserInfo.events, action.payload]
@@ -103,6 +81,12 @@ const reducer = (state = initialState, action) => {
         return {
             ...state,
             selectedEventTime: action.payload
+        };
+        break
+        case UPDATE_TAB:
+        return {
+            ...state,
+            tab: action.payload
         };
         break
         default:

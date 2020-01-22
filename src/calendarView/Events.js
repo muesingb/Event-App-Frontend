@@ -24,10 +24,16 @@ const Events = (props) => {
       props.navigation.navigate("Event")
     }
 
-    const data = () => {
+    const createdData = () => {
       return (state.eventsAndUsers.allEventsView === "all" && state.eventsAndUsers.allEvents) ? 
       state.eventsAndUsers.allEvents
        : state.eventsAndUsers.currentUserInfo.created_events
+    }
+
+    const attendingData = () => {
+      return (state.eventsAndUsers.allEventsView === "all" && state.eventsAndUsers.allEvents) ? 
+      state.eventsAndUsers.allEvents
+      : state.eventsAndUsers.currentUserInfo.events
     }
 
     const noEvents = () => {
@@ -46,11 +52,11 @@ const Events = (props) => {
         </Text>
       </View>
       <View>
-        <Text>
+        <Text style={styles.noEvents}>
           {noEvents()}
         </Text>
       </View>
-      <FlatList data={data()} renderItem={({item}) => <EventCard key={item.id} {...item} handlePress={handlePress}/>}/>
+      <FlatList data={createdData()} renderItem={({item}) => <EventCard key={item.id} {...item} handlePress={handlePress}/>}/>
       < NavBar {...props} />
       {/* <TabNavigator /> */}
     </>
@@ -65,5 +71,11 @@ const styles = StyleSheet.create({
    fontSize: 40,
    alignSelf: "center",
    marginTop: 10
+  },
+  noEvents: {
+    alignSelf: "center",
+    justifyContent: "center",
+    fontSize: 20,
+    marginTop: 20
   }
 })

@@ -9,7 +9,8 @@ import { Portal } from 'react-native-paper';
 const EventCard = (props) => {
   const state = useSelector(state => state)
   const dispatch = useDispatch()
-  const currentUserInfo = useSelector(state => state.eventsAndUsers.currentUserInfo)
+  const currentUserInfo = useSelector(state => state.eventsAndUsers.currentUserInfo.events)
+  const currentUserInfoCreatedEvents = useSelector(state => state.eventsAndUsers.currentUserInfo.created_events)
   const [userAttendance, toggleUserAttendance] = useState();
   const [going, changeGoing] = useState()
 
@@ -18,24 +19,25 @@ const EventCard = (props) => {
   },[userAttendance])
 
   useEffect(()=>{
-    currentUserInfo.events 
-    ? toggleUserAttendance(currentUserInfo.events.map(event => event.id).includes(props.id))
+    currentUserInfo
+    ? toggleUserAttendance(currentUserInfo.map(event => event.id).includes(props.id))
     : null
   },[currentUserInfo])
 
   const attendingEvent = () => {
     dispatch(attendEvent({event_id: props.id, attendee_id: state.eventsAndUsers.currentUser}))
-    toggleUserAttendance(true)
+    changeGoing("Going")
   }
 
   const unattendingEvent = () => {
-    if (currentUserInfo.created_events.map(event => event.id).includes(props.id)) {
+    if (currentUserInfoCreatedEvents.map(event => event.id).includes(props.id)) {
       alert("Cannot unattend an event you created")
     } else {
-      toggleUserAttendance(false)
+      changeGoing("Go?")
       dispatch(unattendEvent({event_id: props.id, attendee_id: state.eventsAndUsers.currentUser}))
     }
   }
+  console.log(props)
 
   return (
     <TouchableOpacity style={styles.container} activeOpacity={0.6} onPress={() => props.handlePress(props)}>
