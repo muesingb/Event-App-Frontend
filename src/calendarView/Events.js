@@ -46,17 +46,15 @@ const Events = (props) => {
 
   return (
     <>
-      <View>
+      <View style={{ justifyContent: "center"}}>
         <Text style={styles.welcome}>
-          Welcome {state.eventsAndUsers.currentUserInfo.user ? state.eventsAndUsers.currentUserInfo.user.name : null }
+           🎊Welcome {state.eventsAndUsers.currentUserInfo.user ? state.eventsAndUsers.currentUserInfo.user.name : null }🎊
         </Text>
-      </View>
-      <View>
         <Text style={styles.noEvents}>
           {noEvents()}
         </Text>
       </View>
-      <FlatList data={createdData()} renderItem={({item}) => <EventCard key={item.id} {...item} handlePress={handlePress}/>}/>
+      <FlatList keyExtractor={item => `${item.id}`} data={createdData()} renderItem={({item}) => <EventCard {...item} handlePress={handlePress}/>}/>
       < NavBar {...props} />
       {/* <TabNavigator /> */}
     </>
@@ -68,14 +66,28 @@ export default Events;
 const styles = StyleSheet.create({
   welcome: {
    fontWeight: "bold",
-   fontSize: 40,
+   fontSize: 35,
+   marginTop: 10,
    alignSelf: "center",
-   marginTop: 10
+  // borderWidth: 1,
+  marginRight: 13,
+   color: "#1188c3",
+   fontFamily: 'Futura',
+   shadowColor: "#000",
+    shadowOffset: {
+    width: 0,
+    height: 1,
+  },
+  shadowOpacity: 0.22,
+  shadowRadius: 2.22,
+
+  elevation: 3
   },
   noEvents: {
     alignSelf: "center",
     justifyContent: "center",
     fontSize: 20,
-    marginTop: 20
+    marginTop: 20,
+    fontFamily: 'Futura'
   }
 })

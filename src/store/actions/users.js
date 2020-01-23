@@ -1,7 +1,7 @@
 import { FETCH_USERS, UPDATE_USER, UPDATE_SHOW_USER, UPDATE_USER_INFO, UPDATE_SHOW_USER_INFO } from './actionTypes'
 import { showEventInfo } from './events'
 
-const URL = 'http://7bf28ea6.ngrok.io'
+const URL = 'http://81c4fec3.ngrok.io'
 
 //sets current user to user_id given
 export const currentUser = (user_id) => {

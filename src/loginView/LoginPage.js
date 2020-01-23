@@ -27,16 +27,14 @@ const LoginPage = props => {
   }
 
   return (
-    <View>
-    <ImageBackground  style= { styles.backgroundImage } style={{width: '100%', height: '100%'}} source={{uri: 'https://i.pinimg.com/originals/73/ba/6b/73ba6bb4edf6d6143bbdc9f83fa21fe3.jpg'}}>
-      <View style={styles.container}>
-        {state.eventsAndUsers.allUsers.map(user => <UserCard key={user.id} view="login" {...user} handlePress={handlePress} />)}
-        <TextInput />
-      </View>
-    </ImageBackground>
-    </ View>
+    <View style={styles.container}>
+      <ImageBackground style={{width: '100%', height: '100%', color: "blue"}} source={{uri: 'https://wallpaperaccess.com/full/24106.jpg'}}>
+        <View style={{paddingTop: 50}}>{state.eventsAndUsers.allUsers.map(user => <UserCard key={user.id} view="login" {...user} handlePress={handlePress} />)}</View>
+      </ImageBackground>
+    </View>
   );
 };
+// {uri: 'https://i.pinimg.com/originals/73/ba/6b/73ba6bb4edf6d6143bbdc9f83fa21fe3.jpg'}
 
 export default LoginPage;
 
@@ -45,7 +43,6 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#fff',
     alignItems: 'center',
-    justifyContent: 'center',
-    paddingTop: 65
+    justifyContent: 'center'
   }
 });

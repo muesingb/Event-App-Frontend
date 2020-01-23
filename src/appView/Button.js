@@ -36,7 +36,7 @@ const NavButton = props => {
 
   return (
     <View style={props.name === state.eventsAndUsers.tab ? styles.selectedButton : styles.button} >
-      <Text style={{alignSelf: "center"}} onPress={handlePress}>{props.name}</Text>
+      <Text style={props.name === state.eventsAndUsers.tab ? styles.selectedButtonText : styles.buttonText} onPress={handlePress}>{props.name}</Text>
       {/* <Button title={props.name} onPress={handlePress}/> */}
     </View>
   );
@@ -47,15 +47,30 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         padding: 15,
-        width: "100%"
+        width: "100%",
+        borderTopWidth: 1
+    },
+    buttonText: {
+      alignSelf: "center", 
+      fontSize: 15, 
+      fontFamily: 'Futura', 
+      // fontWeight: "bold"
+    },
+    selectedButtonText: {
+      alignSelf: "center", 
+      fontSize: 15, 
+      fontFamily: 'Futura', 
+      fontWeight: "bold",
+      color: "#1188c3"
     },
     selectedButton: {
         flex: 1,
         justifyContent: 'center',
         padding: 10,
         width: "100%",
-        backgroundColor: "gray",
-        opacity: 0.5
+        backgroundColor: "#d3d3d3",
+        opacity: 0.7,
+        borderTopWidth: 1
     }
 })
 

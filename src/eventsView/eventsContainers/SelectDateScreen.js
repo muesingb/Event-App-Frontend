@@ -1,5 +1,5 @@
 import React, { Fragment, useState, useEffect } from 'react';
-import { View, Button, StyleSheet } from 'react-native';
+import { View, Button, StyleSheet, Text } from 'react-native';
 import { CalendarList } from 'react-native-calendars';
 import moment from 'moment';
 
@@ -59,7 +59,10 @@ const SelectDateScreen = props => {
           onDayPress={(day) => handleDateSelect(day)}
           />
       </View>
-      <Button title="ok" onPress={handleOkPress} />
+      <View style={{backgroundColor: "#d3d3d3"}}>
+        <Text style={styles.button} onPress={handleOkPress}>Select Time</Text>
+      </View>
+      {/* <Button title="ok" onPress={handleOkPress} /> */}
       <View style={styles.datepicker} >
         <DatePicker />
       </View>
@@ -73,6 +76,14 @@ const styles = StyleSheet.create({
   },
   datepicker: {
     flex: 1
+  },
+  button: {
+    alignSelf: "center", 
+    marginVertical: 5,
+    fontWeight: "bold",
+    color: "#1188c3",
+    fontFamily: 'Futura',
+    fontSize: 28
   }
 });
 

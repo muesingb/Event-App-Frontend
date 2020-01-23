@@ -32,13 +32,13 @@ const screens = {
     },
     "Date and Time": {
         screen: SelectDateScreen,
-        navigationOptions: {
-            headerRight: () => (
-                <Button
-                  onPress={() => alert('Do Something!')}
-                  title="OK"
-                />)
-        }
+        // navigationOptions: {
+        //     headerRight: () => (
+        //         <Button
+        //           onPress={() => alert('Do Something!')}
+        //           title="OK"
+        //         />)
+        // }
     },
     "Profile": {
         screen: UserShowPage
