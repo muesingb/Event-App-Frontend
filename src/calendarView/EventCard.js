@@ -45,9 +45,9 @@ const EventCard = (props) => {
           <Text style={styles.day}>{moment(props.start_time).format('dddd')}</Text>
           <Text style={styles.date}>{moment(props.start_time).format("MMM D")}</Text>
           <Text style={styles.time}>{moment(props.start_time).format('LT')}</Text>
-          <Text>{props.name}</Text>
+          <Text style={styles.name}>{props.name}</Text>
         </View>
-        { going && !props.view ? <Button title={going} onPress={userAttendance ? unattendingEvent : attendingEvent}/> : null}
+        { going && !props.view ? <Button color="#1188c3" title={going} onPress={userAttendance ? unattendingEvent : attendingEvent}/> : null}
       </View>
     </TouchableOpacity>
   );
@@ -75,8 +75,11 @@ const styles = StyleSheet.create({
     fontWeight: "bold"
   },
   time: {
-    fontSize: 10,
+    fontSize: 13,
     color: "red"
+  },
+  name: {
+    fontSize: 19
   },
   buttonView: {
     flexDirection: "row",

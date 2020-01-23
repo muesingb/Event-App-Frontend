@@ -1,6 +1,6 @@
 import {  UPDATE_SHOW_EVENT_INFO, RENDERED_EVENTS, FETCH_EVENTS, CREATE_EVENT, UPDATE_EVENT_TIME } from './actionTypes'
 
-const URL = 'http://7bf28ea6.ngrok.io'
+const URL = 'http://81c4fec3.ngrok.io'
 
 //fetches show event's information from event_id given
 export const showEventInfo = (event_id) => {

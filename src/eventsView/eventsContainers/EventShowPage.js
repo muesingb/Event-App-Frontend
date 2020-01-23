@@ -22,14 +22,14 @@ const EventPage = (props) => {
     console.log(state.eventsAndUsers.showEventInfo)
 
     return (
-        <SafeAreaView style={styles.container}>
-        <ScrollView>
+        // <SafeAreaView style={styles.container}>
+        <ScrollView style={styles.container}>
             {state.eventsAndUsers.showEventInfo.event ? 
             <EventInfoCard {...state.eventsAndUsers.showEventInfo} handleUserProfilePress={handleUserProfilePress}/>
             : null}
         </ScrollView>
-        {/* <FlatList data={state.eventsAndUsers.showEventInfo} renderItem={({item}) => <EventInfoCard key={item.id} {...item} handlePress={handleUserProfilePress}/>}/> */}
-        </SafeAreaView>
+        // <FlatList data={state.eventsAndUsers.showEventInfo} renderItem={({item}) => <EventInfoCard key={item.id} {...item} handlePress={handleUserProfilePress}/>}/>
+        // </SafeAreaView>
     );
 
 };
@@ -40,6 +40,7 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         alignContent: "center",
-        justifyContent: "center"
+        // justifyContent: "center",
+        marginBottom: 30
       }
   })

@@ -1,11 +1,10 @@
 import React, { Fragment, useState, useEffect } from 'react';
-import { Text, View, Button, TextInput, StyleSheet, TouchableOpacity, ScrollView, TouchableWithoutFeedback } from 'react-native';
+import { Text, View, Button, TextInput, StyleSheet, TouchableOpacity, ScrollView, TouchableWithoutFeedback, Keyboard, KeyboardAvoidingView } from 'react-native';
 import { useSelector, useDispatch } from 'react-redux';
 import { StackActions } from 'react-navigation';
 import moment from 'moment';
 import { updateEventTime } from '../../store/actions/events'
 import { Form, Field } from 'react-native-validate-form';
-import {Keyboard} from 'react-native'
 
 import { createEvent } from '../../store/actions/events'
 //moment().add(1, 'hours').calendar()
@@ -60,22 +59,25 @@ const CreateEvent = props => {
 
   return (
     <>
-    <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
-    <View style={styles.container}>
-        <TextInput style={styles.eventTitle} 
-          onChangeText={text => onChangeeventTitle(text)}
-          placeholder={eventTitle}/>
-        <TouchableOpacity style={styles.timeinput} activeOpacity={0.6} onPress={selectDateAndTime}>
-          <Text style={{fontSize: 20}} onChangeText={text => onChangeeventDay(text)}>{eventDay}</Text>
-        </TouchableOpacity>
-        <TextInput style={styles.textinput} 
-          onChangeText={text => onChangeeventLocation(text)}
-          placeholder={eventLocation}/>
-        <TextInput style={styles.textinput} 
-        onChangeText={text => onChangemoreInfo(text)}
-        placeholder={moreInfo}/>
-        <Button title="Create" onPress={handleCreateEvent}/>
-    </View>
+    <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
+      {/* <View> */}
+      <KeyboardAvoidingView behavior="padding" enabled>
+        <View style={styles.container}>
+            <TextInput style={styles.eventTitle} 
+              onChangeText={text => onChangeeventTitle(text)}
+              placeholder={eventTitle}/>
+            <TouchableOpacity style={styles.timeinput} activeOpacity={0.6} onPress={selectDateAndTime}>
+              <Text style={{fontSize: 20}} onChangeText={text => onChangeeventDay(text)}>{eventDay}</Text>
+            </TouchableOpacity>
+            <TextInput style={styles.locationinput} 
+              onChangeText={text => onChangeeventLocation(text)}
+              placeholder={eventLocation}/>
+            <TextInput style={styles.textinput} 
+            onChangeText={text => onChangemoreInfo(text)}
+            placeholder={moreInfo}/>
+            <Text style={styles.create} onPress={handleCreateEvent}>Create</Text>
+        </View>
+      </KeyboardAvoidingView>
     </TouchableWithoutFeedback>
     </>
   );
@@ -85,8 +87,8 @@ export default CreateEvent;
 
 const styles = StyleSheet.create({
   container: {
-    height: "90%",
-    width: "80%",
+    height: "97%",
+    width: "85%",
     alignSelf: "center"
   },
   eventTitle: {
@@ -95,24 +97,45 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     flex: 2,
     marginVertical: 10,
-    fontSize: 40,
+    fontSize: 50,
     borderRadius: 5,
+    paddingHorizontal: 10
   },
   textinput: {
     height: 40, 
     borderColor: 'gray', 
     borderWidth: 1,
+    flex: 3,
+    marginVertical: 10,
+    borderRadius: 5,
+    fontSize: 23,
+    paddingHorizontal: 10
+  },
+  locationinput: {
+    height: 40, 
+    borderColor: 'gray', 
+    borderWidth: 1,
     flex: 1,
-    marginVertical: 5,
-    borderRadius: 5
+    marginVertical: 10,
+    borderRadius: 5,
+    fontSize: 23,
+    paddingHorizontal: 10
   },
   timeinput: {
     height: 40, 
     borderColor: 'gray', 
     borderWidth: 1,
     justifyContent: "center",
-    flex: 1,
+    flex: 2,
     borderRadius: 5,
-    alignItems: "center"
+    alignItems: "center",
+    marginVertical: 10
+  },
+  create: {
+    fontSize: 40,
+    fontWeight: "bold",
+    alignSelf: "center",
+    color: "#1188c3",
+    fontFamily: 'Futura'
   }
 })

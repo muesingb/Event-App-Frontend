@@ -5,7 +5,7 @@ import { Text, View, StyleSheet } from 'react-native';
 import NavButton from './Button'
 
 const NavBar = props => {
-    const [buttonTitles, setButtonTitles] = useState(["Profile", "Home", "Create Event", "Your Events"]);
+    const [buttonTitles, setButtonTitles] = useState(["Home", "Profile",  "Create Event", "Your Events"]);
 
     const renderButtons = () => {
         return buttonTitles.map(button => <NavButton key={button} name={button} navigation={props.navigation}/>)
