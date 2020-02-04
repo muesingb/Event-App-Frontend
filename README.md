@@ -1,7 +1,7 @@
 # Events
 > Tracks and organizes user created events and event attendees, similar to Facebook events.
 
-DEMO: https://www.youtube.com/watch?v=AVF3dbqKgNQ&feature=youtu.be
+[Watch the Demo](https://www.youtube.com/watch?v=AVF3dbqKgNQ&feature=youtu.be)
 
 <ul>
   <li />Manages event date and times using moment.js, React Native Calendars, and datetimepicker libraries.<br>
@@ -26,4 +26,4 @@ Technologies:
 
 Barbara Muesing – [LinkedIn](https://www.linkedin.com/in/barbara-muesing) – muesingb@gmail.com
 
-[https://github.com/muesingb/Event-App-Api](https://github.com/muesingb/Event-App-Api)
+[https://github.com/muesingb/Event-App-Frontend](https://github.com/muesingb/Event-App-Frontend)
