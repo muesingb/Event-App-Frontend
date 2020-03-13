@@ -22,6 +22,9 @@ Technologies:
   <li />React Native Navigation
 </ul>
 
+## Further Reading
+I've written a [blog post](https://medium.com/@muesingb/developing-fullstack-react-native-applications-without-a-simulator-e952ab1493d2) about setting up the simulation environment using Expo on a mobile device.
+
 ## Meta
 
 Barbara Muesing – [LinkedIn](https://www.linkedin.com/in/barbara-muesing) – muesingb@gmail.com
